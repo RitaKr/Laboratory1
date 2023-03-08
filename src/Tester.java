@@ -10,8 +10,9 @@ public class Tester extends Methods {
         System.out.println(ukma);
 
         //1. додавання, редагування, видалення факультетів
-        ukma.addFaculty("ФГН");
-        ukma.addFaculty("ФПрН");
+        //addFaculty("фі");
+        addFaculty("ФГН");
+        addFaculty("ФПрН");
         editFaculty("ФГН", "ФСНСТ");
         deleteFaculty("ФПрН");
 
@@ -40,7 +41,9 @@ public class Tester extends Methods {
         deleteTeacherFromSpecialty("Печкурова Олена Миколаївна", "маркетинг");
         deleteTeacherFromSpecialty("Ренчка Інна Євгеніївна", "Міжнародні відносини");
         deleteTeacherCompletely("Калиновська Оксана В'ячеславівна");
-
+        editTeachersName("Проценко Володимир Семенович", "Проц Володимир Семенович");
+        editTeachersCourses("Печкурова Олена Миколаївна", new int[]{1, 4});
+        editTeachersGroups("Печкурова Олена Миколаївна", new int[]{1, 2});
 
         //4
         findStudentByName("шевчук");

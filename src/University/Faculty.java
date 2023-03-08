@@ -34,6 +34,10 @@ public class Faculty {
         return facultyName;
     }
 
+    public int getNumberOfSpecialties() {
+        return numberOfSpecialties;
+    }
+
     public void setNumberOfSpecialties(int numberOfSpecialties) {
         this.numberOfSpecialties = numberOfSpecialties;
     }

@@ -31,7 +31,7 @@ public class University {
         this.numberOfTeachers = numberOfTeachers;
     }
 
-    public Student[] ipzStudents = {
+    private Student[] ipzStudents = {
             new Student("Трохимчук Артем Андрійович", 1, 1, "ІПЗ"),
             new Student("Красовський Андрій Олександрович", 1, 2, "ІПЗ"),
             new Student("Крижанівська Маргарита Сергіївна", 1, 3, "ІПЗ"),
@@ -50,7 +50,7 @@ public class University {
 
             new Student("Богута Станіслав Сергійович", 4, 1, "ІПЗ"),
     };
-    public Student[] knStudents = {
+    private Student[] knStudents = {
             new Student("Романюк Андрій Олександрович", 1, 1, "КН"),
             new Student("Рудник Богдан Дмитрович", 1, 2, "КН"),
             new Student("Прокопчук Богдана Олександрівна", 1, 3, "КН"),
@@ -69,7 +69,7 @@ public class University {
             new Student("Пономаренко Катерина Олександрівна", 4, 2, "КН"),
     };
 
-    public Student[] economyStudents = {
+    private Student[] economyStudents = {
             new Student("Думич Ірина Володимірівна", 1, 1, "Економіка"),
             new Student("Грек Тетяна Василівна", 1, 2, "Економіка"),
             new Student("Альошина Милана Ігорівна", 1, 3, "Економіка"),
@@ -88,7 +88,7 @@ public class University {
             new Student("Жуков Максим Олексійович", 4, 1, "Економіка"),
             new Student("Божко Катерина Сергіївна", 4, 2, "Економіка"),
     };
-    public Student[] marketingStudents = {
+    private Student[] marketingStudents = {
             new Student("Захарченко Марія Юріївна", 1, 1, "Маркетинг"),
             new Student("Лобанова Софія Андріївна", 1, 2, "Маркетинг"),
             new Student("Подолян Уляна Мирославівна", 1, 3, "Маркетинг"),
@@ -106,7 +106,7 @@ public class University {
             new Student("Кондратьєва Світлана Володимірівна", 4, 2, "Маркетинг"),
             new Student("Миколенко Ірина Ігорівна", 4, 3, "Маркетинг"),
     };
-    public Teacher[] ipzTeachers = {
+    private Teacher[] ipzTeachers = {
             new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Кирієнко Оксана Валентинівна", new int[]{1, 2}, new int[]{2}, new String[]{"ІПЗ"},  new String[]{"ФІ"}),
             new Teacher("Глибовець Андрій Миколайович", new int[]{1, 2, 3, 4}, new int[]{1, 2, 3}, new String[]{"ІПЗ"},  new String[]{"ФІ"}),
@@ -114,29 +114,29 @@ public class University {
             new Teacher("Проценко Володимир Семенович", new int[]{1, 3, 4}, new int[]{2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
             new Teacher("Митник Юрій Васильович", new int[]{1, 4}, new int[]{2, 3}, new String[]{"ІПЗ"},  new String[]{"ФІ"}),
     };
-    public Teacher[] knTeachers = {
+    private Teacher[] knTeachers = {
             new Teacher("Глибовець Микола Миколайович", new int[]{1, 3, 4}, new int[]{1, 2}, new String[]{"КН"},  new String[]{"ФІ"}),
             new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Тригуб Олександр Семенович", new int[]{1}, new int[]{1, 2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
             new Teacher("Захарійченко Юрій Олексійович", new int[]{1, 2, 3, 4}, new int[]{1, 2, 3}, new String[]{"КН", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Проценко Володимир Семенович", new int[]{1, 3, 4}, new int[]{2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
     };
-    public Teacher[] economyTeachers = {
+    private Teacher[] economyTeachers = {
             new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Калиновська Оксана В'ячеславівна", new int[]{1}, new int[]{2}, new String[]{"Економіка"},  new String[]{"ФЕН"}),
             new Teacher("Гуменна Олександра Віталіївна", new int[]{2, 3, 4}, new int[]{1, 2}, new String[]{"Економіка"},  new String[]{"ФЕН"}),
     };
-    public Teacher[] marketingTeachers = {
+    private Teacher[] marketingTeachers = {
             new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Захарійченко Юрій Олексійович", new int[]{1, 2}, new int[]{1, 2, 3}, new String[]{"КН", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Берданова Ольга Володимирівна", new int[]{2, 3}, new int[]{2, 3}, new String[]{"Маркетинг"},  new String[]{"ФЕН"}),
             new Teacher("Малиш Наталія Андріївна", new int[]{1, 4}, new int[]{1}, new String[]{"Маркетинг"},  new String[]{"ФЕН"}),
     };
-    public Specialty[] FI = {
+    private Specialty[] FI = {
             new Specialty("ІПЗ", ipzStudents, ipzTeachers, "ФІ"),
             new Specialty("КН", knStudents, knTeachers, "ФІ"),
     };
-    public Specialty[] FEN = {
+    private Specialty[] FEN = {
             new Specialty("Економіка", economyStudents, economyTeachers, "ФЕН"),
             new Specialty("Маркетинг", marketingStudents, marketingTeachers,"ФЕН"),
     };
@@ -148,15 +148,6 @@ public class University {
         faculties[0] = new Faculty("ФІ", FI[0], FI[1]);
         faculties[1] = new Faculty("ФЕН", FEN[0], FEN[1]);
         updateStudentsAndTeachers();
-    }
-
-    public void addFaculty(String name){
-        //System.out.println(numberOfFaculties);
-        extendFacultyArray(numberOfFaculties+1);
-        //System.out.println(numberOfFaculties);
-        faculties[numberOfFaculties-1]=new Faculty(name);
-        updateStudentsAndTeachers();
-
     }
 
     public int getNumberOfFaculties() {
@@ -187,7 +178,7 @@ public class University {
         this.allTeachers = allTeachers;
     }
 
-    private void extendFacultyArray(int n){
+    protected static void extendFacultyArray(int n){
         Faculty[] extendedArr = new Faculty[n];
         for (int i=0; i<numberOfFaculties; i++) {
             extendedArr[i] = faculties[i];
@@ -211,6 +202,25 @@ public class University {
     public Faculty[] getFaculties() {
         return faculties;
     }
+    public static Specialty[] getAllSpecialties() {
+        Specialty[] arr = new Specialty[getTotalNumberOfSpecialties()];
+        int n=0;
+        for (int i=0, k=0; i<numberOfFaculties; i++){
+            for (Specialty s:faculties[i].getSpecialties()){
+                arr[k]=s;
+                k++;
+            }
+        }
+        //System.out.println(Arrays.toString(arr));
+        return arr;
+    }
+    public static int getTotalNumberOfSpecialties(){
+        int n=0;
+        for (Faculty f:faculties){
+            n+=f.getNumberOfSpecialties();
+        }
+        return n;
+    }
 
     public static void updateStudentsAndTeachers(){
         numberOfStudents=0;
@@ -223,6 +233,7 @@ public class University {
                 numberOfStudents += sp.getNumberOfStudents();
                 numberOfTeachers += sp.getNumberOfTeachers();
             }
+            f.updateStudentsAndTeachers();
         }
         allStudents=new Student[numberOfStudents];
         allTeachers=new Teacher[numberOfTeachers];
@@ -243,6 +254,7 @@ public class University {
                 }
                 nTeachers+=sp.getNumberOfTeachers();
             }
+            f.updateStudentsAndTeachers();
         }
 
     }

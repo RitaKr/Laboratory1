@@ -250,7 +250,19 @@ public class Methods extends University{
         return person;
     }
 
-
+    public static boolean addFaculty(String facultyName){
+        //System.out.println(numberOfFaculties);
+        if (!contains(faculties, facultyName)) {
+            extendFacultyArray(numberOfFaculties + 1);
+            //System.out.println(numberOfFaculties);
+            faculties[numberOfFaculties - 1] = new Faculty(facultyName);
+            updateStudentsAndTeachers();
+            return true;
+        } else {
+            System.out.println("this faculty already exists");
+            return false;
+        }
+    }
     public static boolean editFaculty(String facultyName, String newName) {
         Faculty faculty = findFaculty(facultyName);
         if (faculty!=null) {
@@ -280,12 +292,12 @@ public class Methods extends University{
 
     public static boolean addSpecialty(String specialtyName, String facultyName) {
         Faculty faculty = findFaculty(facultyName);
-        if (faculty!=null) {
+        if (faculty!=null && !contains(getAllSpecialties(), specialtyName)) {
             faculty.addSpecialty(specialtyName);
             updateStudentsAndTeachers();
             return true;
         } else {
-            System.out.println("this faculty doesn't exist");
+            System.out.println("this faculty doesn't exist or this specialty already exist");
             return false;
         }
     }
@@ -318,13 +330,13 @@ public class Methods extends University{
 
     public static boolean addStudent(String studentName, int year, int group, String specialtyName) {
         Specialty specialty = findSpecialty(specialtyName);
-        if (specialty!=null) {
+        if (specialty!=null  && !contains(allStudents, studentName)) {
             //Faculty faculty = findFaculty(specialty.getFaculty());
             specialty.addStudent(studentName,year, group);
             updateStudentsAndTeachers();
             return true;
         } else {
-            //System.out.println("this specialty doesn't exist");
+            //System.out.println("this specialty doesn't exist or this student already exist");
             return false;
         }
     }
@@ -335,7 +347,7 @@ public class Methods extends University{
             updateStudentsAndTeachers();
             return true;
         } else {
-            System.out.println("this student doesn't exist");
+            //System.out.println("this student doesn't exist");
             return false;
         }
     }
@@ -346,7 +358,7 @@ public class Methods extends University{
             updateStudentsAndTeachers();
             return true;
         } else {
-            System.out.println("this student doesn't exist");
+            //System.out.println("this student doesn't exist");
             return false;
         }
     }
@@ -357,7 +369,7 @@ public class Methods extends University{
             updateStudentsAndTeachers();
             return true;
         } else {
-            System.out.println("this student doesn't exist");
+            //System.out.println("this student doesn't exist");
             return false;
         }
     }
@@ -372,7 +384,7 @@ public class Methods extends University{
             updateStudentsAndTeachers();
             return true;
         } else {
-            System.out.println("this student doesn't exist");
+            //System.out.println("this student doesn't exist");
             return false;
         }
     }
@@ -380,7 +392,7 @@ public class Methods extends University{
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null) {
             if (contains(specialty.getTeachers(), teacherName)) {
-                System.out.println("This teacher is already on this specialty");
+                //System.out.println("This teacher is already on this specialty");
                 return false;
             } else {
                 String[] specs = new String[]{specialty.getSpecialtyName()};
@@ -477,6 +489,71 @@ public class Methods extends University{
             return true;
         } else {
             System.out.println("this specialty or student doesn't exist, or this teacher doesn't work on this specialty");
+            return false;
+        }
+    }
+    public static boolean editTeachersName(String teacherName, String newName) {
+        Teacher teacher = findTeacherByFullName(teacherName);
+        if (teacher!=null) {
+            for (Faculty f:faculties) {
+                Specialty[] specialties = f.getSpecialties();
+                for (Specialty sp : specialties) {
+                    Teacher[] teachers = sp.getTeachers();
+                    for (Teacher t:teachers){
+                        if (t.getName().equalsIgnoreCase(teacherName)){
+                            t.setName(newName);
+                        }
+                    }
+
+                }
+            }
+            updateStudentsAndTeachers();
+            return true;
+        } else {
+            //System.out.println("this specialty doesn't exist");
+            return false;
+        }
+    }
+    public static boolean editTeachersCourses(String teacherName, int[] courses) {
+        Teacher teacher = findTeacherByFullName(teacherName);
+        if (teacher!=null) {
+            for (Faculty f:faculties) {
+                Specialty[] specialties = f.getSpecialties();
+                for (Specialty sp : specialties) {
+                    Teacher[] teachers = sp.getTeachers();
+                    for (Teacher t:teachers){
+                        if (t.getName().equalsIgnoreCase(teacherName)){
+                            t.setYears(courses);
+                        }
+                    }
+                }
+            }
+            updateStudentsAndTeachers();
+            return true;
+        } else {
+            //System.out.println("this specialty doesn't exist");
+            return false;
+        }
+    }
+    public static boolean editTeachersGroups(String teacherName, int[] groups) {
+        Teacher teacher = findTeacherByFullName(teacherName);
+        if (teacher!=null) {
+            for (Faculty f:faculties) {
+                Specialty[] specialties = f.getSpecialties();
+                for (Specialty sp : specialties) {
+                    Teacher[] teachers = sp.getTeachers();
+                    for (Teacher t:teachers){
+                        if (t.getName().equalsIgnoreCase(teacherName)){
+                            t.setGroups(groups);
+                        }
+                    }
+
+                }
+            }
+            updateStudentsAndTeachers();
+            return true;
+        } else {
+            //System.out.println("this specialty doesn't exist");
             return false;
         }
     }
@@ -622,14 +699,31 @@ public class Methods extends University{
         }
         return contains;
     }
-    private static boolean contains(Teacher[] arr, String item){
+    private static boolean contains(Human[] arr, String item){
         boolean contains = false;
-        for (Teacher i:arr) if (i.getName().equalsIgnoreCase(item)) {
+        for (Human i:arr) if (i.getName().equalsIgnoreCase(item)) {
             contains = true;
             break;
         }
         return contains;
     }
+    private static boolean contains(Specialty[] arr, String item){
+        boolean contains = false;
+        for (Specialty i:arr) if (i.getSpecialtyName().equalsIgnoreCase(item)) {
+            contains = true;
+            break;
+        }
+        return contains;
+    }
+    private static boolean contains(Faculty[] arr, String item){
+        boolean contains = false;
+        for (Faculty i:arr) if (i.getFacultyName().equalsIgnoreCase(item)) {
+            contains = true;
+            break;
+        }
+        return contains;
+    }
+
     //making every first letter after space capital (if it's not)
     public static String normalizeCase(String string) {
         String res="";
