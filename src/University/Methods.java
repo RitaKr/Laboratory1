@@ -35,17 +35,17 @@ public class Methods extends University{
     }
     /**
      * Sorting Students/Teachers by names (both smaller to greater and vise versa)
-     * @param allHumans array of students
+     * @param allStudents array of students
      * @param length length of array
      * @param smallerToGreater sorting mode (true - smaller to greater, false - greater to smaller)
      */
-    public static void sortByName(Student[] allHumans, int length, boolean smallerToGreater) {
+    public static void sortByName(Student[] allStudents, int length, boolean smallerToGreater) {
         if (length > 1) { //sort as long as there is something to sort
             if (smallerToGreater) { //sorting from smaller to greater
                 for (int i = 0; i < length - 1; i++) {  //going through unsorted names
-                    String leftName = allHumans[i].getName();//getting name of current left array student
+                    String leftName = allStudents[i].getName();//getting name of current left array student
                     int leftNameLength = leftName.length();
-                    String rightName = allHumans[i + 1].getName();//getting name of current right array student
+                    String rightName = allStudents[i + 1].getName();//getting name of current right array student
                     int rightNameLength = rightName.length();
                     int minNameLength = Math.min(leftNameLength, rightNameLength);//defining smaller name length
 
@@ -68,9 +68,9 @@ public class Methods extends University{
                                 (rightName.charAt(j)=='Ї' && (leftName.charAt(j)>='И' || leftName.charAt(j)=='І')) ||
                                 (rightName.charAt(j)=='ї' && (leftName.charAt(j)>='и' || leftName.charAt(j)=='і')) ||
                                 leftName.charAt(j) > rightName.charAt(j)) {//comparing first letters of names of same-index elements of right and left arrays
-                            Student temp = allHumans[i];
-                            allHumans[i] = allHumans[i + 1];
-                            allHumans[i + 1] = temp;
+                            Student temp = allStudents[i];
+                            allStudents[i] = allStudents[i + 1];
+                            allStudents[i + 1] = temp;
                             sorted = true;
 
                         }
@@ -83,33 +83,33 @@ public class Methods extends University{
                     if (!sorted) {
                         //if names are equal or one contains another
                         if (leftNameLength <= rightNameLength) {//put left one if we sort a-z, and it's shorter or equal
-                            Student temp = allHumans[i];
-                            allHumans[i] = allHumans[i + 1];
-                            allHumans[i + 1] = temp;
+                            Student temp = allStudents[i];
+                            allStudents[i] = allStudents[i + 1];
+                            allStudents[i + 1] = temp;
                         }
 
                     }
 
                 }
             }
-            sortByName(allHumans, length - 1, smallerToGreater); //one pass done, proceed to the next
+            sortByName(allStudents, length - 1, smallerToGreater); //one pass done, proceed to the next
         } else {
-            showStudentsArr(allHumans);
+            showStudentsArr(allStudents);
         }
     }
     /**
-     * Sorting Students/Teachers by names (both smaller to greater and vise versa)
-     * @param allHumans array of students
+     * Sorting Teachers by names (both smaller to greater and vise versa)
+     * @param allTeachers array of teachers
      * @param length length of array
      * @param smallerToGreater sorting mode (true - smaller to greater, false - greater to smaller)
      */
-    public static void sortByName(Teacher[] allHumans, int length, boolean smallerToGreater) {
+    public static void sortByName(Teacher[] allTeachers, int length, boolean smallerToGreater) {
         if (length > 1) { //sort as long as there is something to sort
             if (smallerToGreater) { //sorting from smaller to greater
                 for (int i = 0; i < length - 1; i++) {  //going through unsorted names
-                    String leftName = allHumans[i].getName();//getting name of current left array student
+                    String leftName = allTeachers[i].getName();//getting name of current left array student
                     int leftNameLength = leftName.length();
-                    String rightName = allHumans[i + 1].getName();//getting name of current right array student
+                    String rightName = allTeachers[i + 1].getName();//getting name of current right array student
                     int rightNameLength = rightName.length();
                     int minNameLength = Math.min(leftNameLength, rightNameLength);//defining smaller name length
 
@@ -132,9 +132,9 @@ public class Methods extends University{
                                 (rightName.charAt(j)=='Ї' && (leftName.charAt(j)>='И' || leftName.charAt(j)=='І')) ||
                                 (rightName.charAt(j)=='ї' && (leftName.charAt(j)>='и' || leftName.charAt(j)=='і')) ||
                                 leftName.charAt(j) > rightName.charAt(j)) {//comparing first letters of names of same-index elements of right and left arrays
-                            Teacher temp = allHumans[i];
-                            allHumans[i] = allHumans[i + 1];
-                            allHumans[i + 1] = temp;
+                            Teacher temp = allTeachers[i];
+                            allTeachers[i] = allTeachers[i + 1];
+                            allTeachers[i + 1] = temp;
                             sorted = true;
 
                         }
@@ -144,21 +144,23 @@ public class Methods extends University{
                             sorted = true;
                         }
                     }
+                    /*
                     if (!sorted) {
                         //if names are equal or one contains another
                         if (leftNameLength <= rightNameLength) {//put left one if we sort a-z, and it's shorter or equal
-                            Teacher temp = allHumans[i];
-                            allHumans[i] = allHumans[i + 1];
-                            allHumans[i + 1] = temp;
+                            Teacher temp = allTeachers[i];
+                            allTeachers[i] = allTeachers[i + 1];
+                            allTeachers[i + 1] = temp;
                         }
 
                     }
+                    */
 
                 }
             }
-            sortByName(allHumans, length - 1, smallerToGreater); //one pass done, proceed to the next
+            sortByName(allTeachers, length - 1, smallerToGreater); //one pass done, proceed to the next
         } else {
-            showTeachersArr(allHumans);
+            showTeachersArr(allTeachers);
         }
     }
 
@@ -537,8 +539,8 @@ public class Methods extends University{
                 person = student;
                 System.out.println(person);
             }
-            System.out.println();
         }
+        System.out.println();
         //System.out.println("no matches found");
         return person != null;
     }
@@ -551,8 +553,8 @@ public class Methods extends University{
                     System.out.println(person);
                 }
             }
-            System.out.println();
         }
+        System.out.println();
         //System.out.println("no matches found");
         return person != null;
 

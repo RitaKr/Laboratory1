@@ -7,12 +7,46 @@ public class Tester extends Methods {
     public static void main(String[] args) throws IOException {
 
         ukma = new University();
-        //ukma.addFaculty("Fl", 3);
         System.out.println(ukma);
 
-        //System.out.println(Arrays.toString(allStudents));
-        //System.out.println(Arrays.toString(allTeachers));
-/*
+        //1. додавання, редагування, видалення факультетів
+        ukma.addFaculty("ФГН");
+        ukma.addFaculty("ФПрН");
+        editFaculty("ФГН", "ФСНСТ");
+        deleteFaculty("ФПрН");
+
+        //2
+        addSpecialty("ПМ", "ФІ");
+        addSpecialty("Соціологія", "ФСНСТ");
+        addSpecialty("Журналістика", "ФСНСТ");
+        addSpecialty("Соц робота", "ФСНСТ");
+        addSpecialty("Міжнародні відносини", "ФСНСТ");
+        addSpecialty("Право", "ФСНСТ");
+        editSpecialty("Соц робота", "Психологія");
+        deleteSpecialty("Право");
+
+        //3.1
+        addStudent("Зубець Олена Сергіївна", 1, 2, "Міжнародні відносини");
+        deleteStudent("Прохоров Олександр Денисович");
+        editStudentsName("трохимчук артем андрійович", "трохимчук артемчик андрійович");
+        editStudentsYear("Красовський Андрій Олександрович", 4);
+        editStudentsGroup("Крижанівська Маргарита Сергіївна", 2);
+
+        //3.2
+        addTeacher("Калиновська Оксана В'ячеславівна", new int[] {2, 3}, new int[] {2, 3}, "ІПЗ");
+        addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "КН");
+        addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "міжнародні відносини");
+        deleteTeacherFromSpecialty("Печкурова Олена Миколаївна", "Економіка");
+        deleteTeacherFromSpecialty("Печкурова Олена Миколаївна", "маркетинг");
+        deleteTeacherFromSpecialty("Ренчка Інна Євгеніївна", "Міжнародні відносини");
+        deleteTeacherCompletely("Калиновська Оксана В'ячеславівна");
+
+
+        //4
+        findStudentByName("шевчук");
+        findTeacherByName("Печкурова");
+        findTeacherByName("Глибовець");
+
         //5
         allStudentsSortedByCourse();
         //6
@@ -39,58 +73,15 @@ public class Tester extends Methods {
         //10
         StudentsBySpecialtyAndYearSortedByName("ІПЗ", 1);
         StudentsBySpecialtyAndYearSortedByName("кн", 2);
-        //StudentsBySpecialtyAndYear("кн", 1);
-        //StudentsBySpecialtyAndYearSortedByName("маркетинг", 3);
-
-*/
-        /*
-        //4
-        findStudentByName("шевчук");
-        findTeacherByName("Печкурова");
-        findTeacherByName("Глибовець");
-
-        //1. додавання, редагування, видалення факультетів
-        ukma.addFaculty("ФГН");
-        editFaculty("ФГН", "ФСНСТ");
-        //System.out.println(ukma);
 
 
-        addSpecialty("Соціологія", "ФСНСТ");
-        addSpecialty("Журналістика", "ФСНСТ");
-        addSpecialty("Психологія", "ФСНСТ");
-        addSpecialty("Соц робота", "ФСНСТ");
-        addSpecialty("Міжнародні відносини", "ФСНСТ");
-        addStudent("Зубець Олена Сергіївна", 1, 2, "Міжнародні відносини");
-        ukma.addFaculty("ФГН");
-        //deleteSpecialty("Економіка");
-        addSpecialty("ПМ", "ФІ");
-        //deleteStudent("трохимчук артем");
-
-        specialtyStudentsSortedByCourse("ІПЗ");
-        editStudentsName("трохимчук артем андрійович", "трохимчук артемчик андрійович");
-        editStudentsYear("Красовський Андрій Олександрович", 4);
-        editStudentsGroup("Крижанівська Маргарита Сергіївна", 2);
-        specialtyStudentsSortedByCourse("ІПЗ");
-        //deleteSpecialty("s");
-        //deleteFaculty("ФЕН");
-        addTeacher("Калиновська Оксана В'ячеславівна", new int[] {2, 3}, new int[] {2, 3}, "ІПЗ");
-        addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "КН");
-        addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "міжнародні відносини");
-        deleteTeacherFromSpecialty("Печкурова Олена Миколаївна", "Економіка");
-        deleteTeacherFromSpecialty("Печкурова Олена Миколаївна", "маркетинг");
-        deleteTeacherCompletely("Калиновська Оксана В'ячеславівна");
-        deleteTeacherFromSpecialty("Ренчка Інна Євгеніївна", "Міжнародні відносини");
         System.out.println(ukma);
-*/
+
 
         String spec = DataInput.getString("enter speciality: ");
         while (!specialtyStudentsSortedByName(spec)) {
             spec = DataInput.getString("This specialty doesn't exist. Enter existing speciality: ");
         }
-        /*System.out.println();
-        ukma.findPersonByCourse(4);
-        System.out.println();
-        ukma.findPersonByGroup(3);*/
 
 
     /*for(int i=1025; i<1152; i++){

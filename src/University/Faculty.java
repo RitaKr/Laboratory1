@@ -91,7 +91,9 @@ public class Faculty {
         updateStudentsAndTeachers();
 
     }
-    private void updateStudentsAndTeachers(){
+    protected void updateStudentsAndTeachers(){
+        this.numberOfStudents=0;
+        this.numberOfTeachers=0;
         for (Specialty sp : specialties) {
             this.numberOfStudents += sp.getNumberOfStudents();
             this.numberOfTeachers += sp.getNumberOfTeachers();
