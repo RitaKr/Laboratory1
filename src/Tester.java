@@ -10,7 +10,7 @@ public class Tester extends Methods {
         System.out.println(ukma);
 
         //1. додавання, редагування, видалення факультетів
-        addFaculty("фі");
+        //addFaculty("фі");
         addFaculty("ФГН");
         addFaculty("ФПрН");
         editFaculty("ФГН", "ФСНСТ");
