@@ -37,17 +37,17 @@ public class Tester extends Methods {
         addTeacher("Калиновська Оксана В'ячеславівна", new int[] {2, 3}, new int[] {2, 3}, "ІПЗ");
         addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "КН");
         addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "міжнародні відносини");
-        deleteTeacherFromSpecialty("Печкурова Олена Миколаївна", "Економіка");
-        deleteTeacherFromSpecialty("Печкурова Олена Миколаївна", "маркетинг");
+        deleteTeacherFromSpecialty("Пєчкурова Олена Миколаївна", "Економіка");
+        deleteTeacherFromSpecialty("Пєчкурова Олена Миколаївна", "маркетинг");
         deleteTeacherFromSpecialty("Ренчка Інна Євгеніївна", "Міжнародні відносини");
         deleteTeacherCompletely("Калиновська Оксана В'ячеславівна");
         editTeachersName("Проценко Володимир Семенович", "Проц Володимир Семенович");
-        editTeachersCourses("Печкурова Олена Миколаївна", new int[]{1, 4});
-        editTeachersGroups("Печкурова Олена Миколаївна", new int[]{1, 2});
+        editTeachersCourses("Пєчкурова Олена Миколаївна", new int[]{1, 4});
+        editTeachersGroups("Пєчкурова Олена Миколаївна", new int[]{1, 2});
 
         //4
         findStudentByName("шевчук");
-        findTeacherByName("Печкурова");
+        findTeacherByName("Пєчкурова");
         findTeacherByName("Глибовець");
 
         //5
