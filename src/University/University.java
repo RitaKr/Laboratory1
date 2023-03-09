@@ -107,7 +107,7 @@ public class University {
             new Student("Миколенко Ірина Ігорівна", 4, 3, "Маркетинг"),
     };
     private Teacher[] ipzTeachers = {
-            new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
+            new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Кирієнко Оксана Валентинівна", new int[]{1, 2}, new int[]{2}, new String[]{"ІПЗ"},  new String[]{"ФІ"}),
             new Teacher("Глибовець Андрій Миколайович", new int[]{1, 2, 3, 4}, new int[]{1, 2, 3}, new String[]{"ІПЗ"},  new String[]{"ФІ"}),
             new Teacher("Тригуб Олександр Семенович", new int[]{1}, new int[]{1, 2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
@@ -116,18 +116,18 @@ public class University {
     };
     private Teacher[] knTeachers = {
             new Teacher("Глибовець Микола Миколайович", new int[]{1, 3, 4}, new int[]{1, 2}, new String[]{"КН"},  new String[]{"ФІ"}),
-            new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
+            new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Тригуб Олександр Семенович", new int[]{1}, new int[]{1, 2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
             new Teacher("Захарійченко Юрій Олексійович", new int[]{1, 2, 3, 4}, new int[]{1, 2, 3}, new String[]{"КН", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Проценко Володимир Семенович", new int[]{1, 3, 4}, new int[]{2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
     };
     private Teacher[] economyTeachers = {
-            new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
+            new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Калиновська Оксана В'ячеславівна", new int[]{1}, new int[]{2}, new String[]{"Економіка"},  new String[]{"ФЕН"}),
             new Teacher("Гуменна Олександра Віталіївна", new int[]{2, 3, 4}, new int[]{1, 2}, new String[]{"Економіка"},  new String[]{"ФЕН"}),
     };
     private Teacher[] marketingTeachers = {
-            new Teacher("Печкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
+            new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Захарійченко Юрій Олексійович", new int[]{1, 2}, new int[]{1, 2, 3}, new String[]{"КН", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Берданова Ольга Володимирівна", new int[]{2, 3}, new int[]{2, 3}, new String[]{"Маркетинг"},  new String[]{"ФЕН"}),
             new Teacher("Малиш Наталія Андріївна", new int[]{1, 4}, new int[]{1}, new String[]{"Маркетинг"},  new String[]{"ФЕН"}),
