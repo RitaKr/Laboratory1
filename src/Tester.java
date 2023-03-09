@@ -11,6 +11,7 @@ public class Tester extends Methods {
 
         //1. додавання, редагування, видалення факультетів
         //addFaculty("фі");
+
         addFaculty("ФГН");
         addFaculty("ФПрН");
         editFaculty("ФГН", "ФСНСТ");
@@ -53,39 +54,44 @@ public class Tester extends Methods {
         //5
         allStudentsSortedByCourse();
         //6
-        facultyStudentsSortedByName("Фен");
+        facultyStudentsSortedByName("Фі");
+        facultyStudentsSortedByName("фснст");
         facultyTeachersSortedByName("фі");
+        facultyTeachersSortedByName("фснст");
+
         //7
 
         specialtyStudentsSortedByCourse("ІПЗ");
         specialtyStudentsSortedByCourse("кн");
         specialtyStudentsSortedByCourse("економіка");
-        specialtyStudentsSortedByCourse("маркетинг");
+        specialtyStudentsSortedByCourse("соціологія");
         //8
         specialtyStudentsSortedByName("ІПЗ");
         specialtyTeachersSortedByName("ІПЗ");
         specialtyStudentsSortedByName("кн");
         specialtyTeachersSortedByName("кн");
+
         specialtyStudentsSortedByName("економіка");
         specialtyTeachersSortedByName("економіка");
-        specialtyStudentsSortedByName("маркетинг");
-        specialtyTeachersSortedByName("маркетинг");
+        specialtyStudentsSortedByName("психологія");
+        specialtyTeachersSortedByName("психологія");
+
         //9
-        StudentsBySpecialtyAndYear("ІПЗ", 2);
+        StudentsBySpecialtyAndYear("ІПЗ", 5);
         StudentsBySpecialtyAndYear("ІПЗ", 1);
         //10
-        StudentsBySpecialtyAndYearSortedByName("ІПЗ", 1);
+        StudentsBySpecialtyAndYearSortedByName("ІПЗ", 4);
         StudentsBySpecialtyAndYearSortedByName("кн", 2);
 
 
         System.out.println(ukma);
 
-
+/*
         String spec = DataInput.getString("enter speciality: ");
         while (!specialtyStudentsSortedByName(spec)) {
             spec = DataInput.getString("This specialty doesn't exist. Enter existing speciality: ");
         }
-
+*/
 
     /*for(int i=1025; i<1152; i++){
             System.out.print((char)i+" ");
@@ -127,7 +133,8 @@ public class Tester extends Methods {
     //5. Вивести всіх студентів впорядкованих за курсами.
     private static void allStudentsSortedByCourse() {
         System.out.println("All students sorted by course");
-        sortByCourse(ukma.getAllStudents(), ukma.getNumberOfStudents(), true);
+        if (ukma.getNumberOfStudents()==0) System.out.println("there are no students in this university"+"\n");
+        else sortByCourse(ukma.getAllStudents(), ukma.getNumberOfStudents(), true);
     }
 
     //6. Вивести всіх студентів факультета впорядкованих за алфавітом.
@@ -135,7 +142,8 @@ public class Tester extends Methods {
         Faculty f = findFaculty(facultyName);
         if (f!=null) {
             System.out.println(facultyName+" students sorted by name");
-            sortByName(f.getStudents(), f.getNumberOfStudents(), true);
+            if (f.getNumberOfStudents()==0) System.out.println("there are no students on "+f.getFacultyName()+"\n");
+            else sortByName(f.getStudents(), f.getNumberOfStudents(), true);
             return true;
         } else {
             //System.out.println("This faculty doesn't exist");
@@ -147,7 +155,8 @@ public class Tester extends Methods {
         Faculty f = findFaculty(facultyName);
         if (f!=null) {
             System.out.println(facultyName+" teachers sorted by name");
-            sortByName(f.getTeachers(), f.getNumberOfTeachers(), true);
+            if (f.getNumberOfTeachers()==0) System.out.println("there are no teachers on "+f.getFacultyName()+"\n");
+            else sortByName(f.getTeachers(), f.getNumberOfTeachers(), true);
             return true;
         } else {
             //System.out.println("This faculty doesn't exist");
@@ -159,7 +168,8 @@ public class Tester extends Methods {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
             System.out.println(specialtyName+" students sorted by course");
-            sortByCourse(s.getStudents(), s.getNumberOfStudents(), true);
+            if (s.getNumberOfStudents()==0) System.out.println("there are no students on "+s.getSpecialtyName()+"\n");
+            else sortByCourse(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
             //System.out.println("This specialty doesn't exist");
@@ -172,7 +182,8 @@ public class Tester extends Methods {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
             System.out.println(specialtyName+" students sorted by name");
-            sortByName(s.getStudents(), s.getNumberOfStudents(), true);
+            if (s.getNumberOfStudents()==0) System.out.println("there are no students on "+s.getSpecialtyName()+"\n");
+            else sortByName(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
             //System.out.println("This specialty doesn't exist");
@@ -184,7 +195,8 @@ public class Tester extends Methods {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
             System.out.println(specialtyName+" teachers sorted by name");
-            sortByName(s.getTeachers(), s.getNumberOfTeachers(), true);
+            if (s.getNumberOfTeachers()==0) System.out.println("there are no teachers on "+s.getSpecialtyName()+"\n");
+            else sortByName(s.getTeachers(), s.getNumberOfTeachers(), true);
             return true;
         } else {
             //System.out.println("This specialty doesn't exist");
@@ -203,6 +215,7 @@ public class Tester extends Methods {
                     k++;
                 }
             }
+            if (k==1) System.out.println("there are no student's on "+year+" course of "+s.getSpecialtyName()+"\n");
             System.out.println();
             return true;
         } else {
@@ -225,7 +238,8 @@ public class Tester extends Methods {
                     k++;
                 }
             }
-            sortByName(students, students.length, true);
+            if (k==0) System.out.println("there are no student's on "+year+" course of "+s.getSpecialtyName()+"\n");
+            else sortByName(students, students.length, true);
             return true;
         } else {
             //System.out.println("This specialty doesn't exist");

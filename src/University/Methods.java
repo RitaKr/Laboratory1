@@ -55,19 +55,7 @@ public class Methods extends University{
                         //checking if students are in order (left's name is smaller), if not, swap them
                         //System.out.println(leftName.charAt(j)+" "+rightName.charAt(j));
                         //System.out.println((int)leftName.charAt(j)+" "+(int)rightName.charAt(j));
-                        if ((leftName.charAt(j)=='Є' && rightName.charAt(j)<='Е') ||
-                                (leftName.charAt(j)=='є' && rightName.charAt(j)<='е') ||
-                                (leftName.charAt(j)=='І' && rightName.charAt(j)<='И') ||
-                                (leftName.charAt(j)=='і' && rightName.charAt(j)<='и') ||
-                                (leftName.charAt(j)=='Ї' && (rightName.charAt(j)<='И' || rightName.charAt(j)=='І')) ||
-                                (leftName.charAt(j)=='ї' && (rightName.charAt(j)<='и' || rightName.charAt(j)=='і')) ||
-                                (rightName.charAt(j)=='Є' && leftName.charAt(j)>='Ж') ||
-                                (rightName.charAt(j)=='є' && leftName.charAt(j)>='ж') ||
-                                (rightName.charAt(j)=='І' && (leftName.charAt(j)>='Й' || leftName.charAt(j)=='Ї')) ||
-                                (rightName.charAt(j)=='і' && (leftName.charAt(j)>='й' || leftName.charAt(j)=='ї')) ||
-                                (rightName.charAt(j)=='Ї' && (leftName.charAt(j)>='И' || leftName.charAt(j)=='І')) ||
-                                (rightName.charAt(j)=='ї' && (leftName.charAt(j)>='и' || leftName.charAt(j)=='і')) ||
-                                leftName.charAt(j) > rightName.charAt(j)) {//comparing first letters of names of same-index elements of right and left arrays
+                        if (leftCharIsGreater(leftName.charAt(j), rightName.charAt(j))) {//comparing first letters of names of same-index elements of right and left arrays
                             Student temp = allStudents[i];
                             allStudents[i] = allStudents[i + 1];
                             allStudents[i + 1] = temp;
@@ -119,19 +107,7 @@ public class Methods extends University{
                         //checking if students are in order (left's name is smaller), if not, swap them
                         //System.out.println(leftName.charAt(j)+" "+rightName.charAt(j));
                         //System.out.println((int)leftName.charAt(j)+" "+(int)rightName.charAt(j));
-                        if ((leftName.charAt(j)=='Є' && rightName.charAt(j)<='Е') ||
-                                (leftName.charAt(j)=='є' && rightName.charAt(j)<='е') ||
-                                (leftName.charAt(j)=='І' && rightName.charAt(j)<='И') ||
-                                (leftName.charAt(j)=='і' && rightName.charAt(j)<='и') ||
-                                (leftName.charAt(j)=='Ї' && (rightName.charAt(j)<='И' || rightName.charAt(j)=='І')) ||
-                                (leftName.charAt(j)=='ї' && (rightName.charAt(j)<='и' || rightName.charAt(j)=='і')) ||
-                                (rightName.charAt(j)=='Є' && leftName.charAt(j)>='Ж') ||
-                                (rightName.charAt(j)=='є' && leftName.charAt(j)>='ж') ||
-                                (rightName.charAt(j)=='І' && (leftName.charAt(j)>='Й' || leftName.charAt(j)=='Ї')) ||
-                                (rightName.charAt(j)=='і' && (leftName.charAt(j)>='й' || leftName.charAt(j)=='ї')) ||
-                                (rightName.charAt(j)=='Ї' && (leftName.charAt(j)>='И' || leftName.charAt(j)=='І')) ||
-                                (rightName.charAt(j)=='ї' && (leftName.charAt(j)>='и' || leftName.charAt(j)=='і')) ||
-                                leftName.charAt(j) > rightName.charAt(j)) {//comparing first letters of names of same-index elements of right and left arrays
+                        if (leftCharIsGreater(leftName.charAt(j), rightName.charAt(j))){//comparing first letters of names of same-index elements of right and left arrays
                             Teacher temp = allTeachers[i];
                             allTeachers[i] = allTeachers[i + 1];
                             allTeachers[i + 1] = temp;
@@ -162,6 +138,28 @@ public class Methods extends University{
         } else {
             showTeachersArr(allTeachers);
         }
+    }
+    private static boolean leftCharIsGreater(char leftCh, char rightCh) {
+        return ((leftCh=='Є' && rightCh<='Е') ||
+                (leftCh=='є' && rightCh<='е') ||
+                (leftCh=='І' && rightCh<='И') ||
+                (leftCh=='і' && rightCh<='и') ||
+                (leftCh=='Ї' && (rightCh<='И' || rightCh=='І')) ||
+                (leftCh=='ї' && (rightCh<='и' || rightCh=='і')) ||
+                (rightCh=='Є' && leftCh>='Ж') ||
+                (rightCh=='є' && leftCh>='ж') ||
+                (rightCh=='І' && (leftCh>='Й' || leftCh=='Ї')) ||
+                (rightCh=='і' && (leftCh>='й' || leftCh=='ї')) ||
+                (rightCh=='Ї' && (leftCh>='И' || leftCh=='І')) ||
+                (rightCh=='ї' && (leftCh>='и' || leftCh=='і')) ||
+                ((leftCh > rightCh) &&
+                        leftCh!='Є'&& leftCh!='є' &&
+                        leftCh!='Ї'&& leftCh!='ї' &&
+                        leftCh!='І'&& leftCh!='і' &&
+                        rightCh!='Є'&& rightCh!='є' &&
+                        rightCh!='Ї'&& rightCh!='ї' &&
+                        rightCh!='І'&& rightCh!='і'
+                ));
     }
 
     public static void showStudentsArr(Student[] arr){
