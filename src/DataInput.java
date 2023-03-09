@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 
 public final class DataInput {
 
-    private static void writeText(String wr){
+    public static void writeText(String wr){
         if (wr == null)
             System.out.print("Введіть дані: ");
         else
@@ -21,20 +21,20 @@ public final class DataInput {
         String s = getString();
         return s.charAt(0);
     }
-/*
-    public static Integer getInt(String wr){
-        writeText(wr);
-        String s = "";
-        try {
-            s = getString();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    /*
+        public static Integer getInt(String wr){
+            writeText(wr);
+            String s = "";
+            try {
+                s = getString();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            Integer value = Integer.valueOf(s);
+            return value;
         }
-        Integer value = Integer.valueOf(s);
-        return value;
-    }
-*/
+    */
     public static String getString() throws IOException{
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -49,7 +49,7 @@ public final class DataInput {
         String s = br.readLine();
         return s;
     }
-    private static boolean checkIfNumber(String str) {
+    public static boolean checkIfNumber(String str) {
         boolean isNum = true;
         if ((str.charAt(0)<'0' || str.charAt(0)>'9') && str.charAt(0)!='-') isNum=false;
         if (str.charAt(0)=='-' && str.length()<2) isNum=false;

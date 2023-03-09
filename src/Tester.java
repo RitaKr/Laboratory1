@@ -1,13 +1,18 @@
+
 import java.io.IOException;
 import java.util.Arrays;
 import University.*;
 public class Tester extends Methods {
     static University ukma;
+    static String method;
 
     public static void main(String[] args) throws IOException {
-
+        System.out.println("Програма має на меті змоделювати структуру університету. У якості прикладу взято НаУКМА");
         ukma = new University();
-        System.out.println(ukma);
+        menu();
+       // System.out.println(ukma);
+
+
 
         //1. додавання, редагування, видалення факультетів
         //addFaculty("фі");
@@ -96,6 +101,21 @@ public class Tester extends Methods {
     /*for(int i=1025; i<1152; i++){
             System.out.print((char)i+" ");
         }*/
+    }
+
+    public static void menu() throws IOException {
+        System.out.println("---------------- Меню ----------------\n" +
+                "1. Створити/видалити/редагувати факультет.\n" +
+                "2. Створити/видалити/редагувати кафедру факультета.\n" +
+                "3. Додати/видалити/редагувати студента/викладача до кафедри.\n" +
+                "4. Знайти студента/викладача за ПІБ, курсом або групою.\n" +
+                "5. Вивести всіх студентів впорядкованих за курсами.\n" +
+                "6. Вивести всіх студентів/викладачів факультета впорядкованих за алфавітом.\n" +
+                "7. Вивести всіх студентів кафедри впорядкованих за курсами.\n" +
+                "8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом.\n" +
+                "9. Вивести всіх студентів кафедри вказаного курсу.\n" +
+                "10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.");
+        method = DataInput.getString("\nОберіть номер методу, який бажаєте виконати: ");
     }
 
 

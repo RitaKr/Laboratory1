@@ -6,9 +6,8 @@ import static University.University.updateStudentsAndTeachers;
 public class Specialty {
     private String specialtyName;
     private int numberOfStudents;
-    private Student[] students;
-
     private int numberOfTeachers;
+    private Student[] students;
     private Teacher[] teachers;
     private String faculty;
 
@@ -41,7 +40,6 @@ public class Specialty {
         extendTeachersArray(numberOfTeachers+1);
         //System.out.println(numberOfFaculties);
         teachers[numberOfTeachers-1]=new Teacher(name, years, groups, specialties, faculties);
-
     }
     private void extendStudentsArray(int n){
         Student[] extendedArr = new Student[n];

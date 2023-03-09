@@ -5,6 +5,7 @@ public class Human {
     public Human(String name){
         this.name = name;
     }
+
     /**
      * Full name getter
      * @return name
@@ -12,7 +13,6 @@ public class Human {
     public String getName(){
         return name;
     }
-
 
 
     /**
