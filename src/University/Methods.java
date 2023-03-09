@@ -176,27 +176,6 @@ public class Methods extends University{
             if (!localArr[i].getName().equals(localArr[i+1].getName())) {
                 System.out.println((k) + ") " + localArr[i]);
                 k++;
-            } else {
-               /* for (int g:localArr[1].getGroups()) {
-                    if (!contains(localArr[i+1].getGroups(), g)) {
-                        localArr[i+1].addGroup(g);
-                    }
-                }
-                for (int c:localArr[i].getYears()) {
-                    if (!contains(localArr[i+1].getYears(), c)) {
-                        localArr[i+1].addYear(c);
-                    }
-                }
-                for (String f:localArr[i].getFaculties()) {
-                    if (!contains(localArr[i+1].getFaculties(), f)) {
-                        localArr[i+1].addFaculty(f);
-                    }
-                }
-                for (String s:localArr[i].getSpecialties()) {
-                    if (!contains(localArr[i+1].getSpecialties(), s)) {
-                        localArr[i+1].addSpecialty(s);
-                    }
-                }*/
             }
         }
         System.out.println((k) + ") " + localArr[localArr.length-1]);
