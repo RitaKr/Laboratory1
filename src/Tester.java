@@ -1,16 +1,93 @@
 
 import java.io.IOException;
-import java.util.Arrays;
+
 import University.*;
 public class Tester extends Methods {
     static University ukma;
     static String method;
+    static String choice = "так";
 
     public static void main(String[] args) throws IOException {
         System.out.println("Програма має на меті змоделювати структуру університету. У якості прикладу взято НаУКМА");
         ukma = new University();
-        menu();
-       // System.out.println(ukma);
+
+        while(choice.equals("так")){
+            menu();
+            while(method.equals("1")){
+                System.out.println("Ви обрали 1. Створити/видалити/редагувати факультет. ");
+                int n = DataInput.getInt("Створити факультет - 1; видалити - 2; редагувати - 3 ");
+                    if(n==1){
+                        String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте створити: ");
+                        addFaculty(facultyName);
+                        ask();
+                    }
+                    if(n==2){
+                        String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте видалити: ");
+                        deleteFaculty(facultyName);
+                        ask();
+                    }
+                    if(n==3){
+                        String facultyName = DataInput.getString("Уведіть назву факультету, яку бажаєте редагувати: ");
+                        String newName = DataInput.getString("Уведіть нову назву факультету: ");
+                        editFaculty(facultyName, newName);
+                        ask();
+                    }
+                   repeatMethod();
+            }
+
+            while(method.equals("2")){
+                System.out.println("Ви обрали 2. Створити/видалити/редагувати кафедру факультета.");
+                int n = DataInput.getInt("Створити кафедру - 1; видалити - 2; редагувати - 3");
+                if(n==1){
+                    String facultyName = DataInput.getString("Уведіть назву факультету, на якому бажаєте створити кафедру: ");
+                    String specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте створити: ");
+                    addSpecialty(facultyName, specialtyName);
+                    ask();
+                }
+                if(n==2){
+                    String specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте видалити: ");
+                    deleteSpecialty(specialtyName);
+                    ask();
+                }
+                if(n==3){
+                    String specialtyName = DataInput.getString("Уведіть назву кафедри, назву якої бажаєте редагувати: ");
+                    String newName = DataInput.getString("Уведіть нову назву кафедри: ");
+                    editSpecialty(specialtyName, newName);
+                    ask();
+                }
+                repeatMethod();
+            }
+
+            while(method.equals("3")){
+                System.out.println("Ви обрали 3. Додати/видалити/редагувати студента/викладача до кафедри.");
+                int n = DataInput.getInt("кого бажаєте додати/видалити/редагувати? 1 - студента, 2 - викладача");
+                if(n==1){
+                    int a = DataInput.getInt("Додати студента до кафедри - 1; видалити - 2; редагувати - 3\n" +
+                            "Уведіть номер дії, яку бажаєте виконати: ");
+                    if(a==1){
+                        String specialtyName = DataInput.getString("Уведіть назву спеціальності, на яку бажаєте записати студента: ");
+                        String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте записати на кафедру: ");
+                        int year = DataInput.getInt("На якому курсі навчається студент? Уведіть номер (1 - 4): ");
+                        while(year<1||year>4){
+                            year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4)");
+                        }
+                        int group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-4)");
+                        while(group<1||group>4){
+                            group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-4)");
+                        }
+                        addStudent(studentName,year,group,specialtyName);
+                        ask();
+                    }
+                    if(a==2){
+                        String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте видалити: ");
+                        deleteStudent(studentName);
+                        ask();
+                    }
+                }
+            }
+
+        }
+
 
 
 
@@ -103,7 +180,24 @@ public class Tester extends Methods {
         }*/
     }
 
-    public static void menu() throws IOException {
+    private static void ask()throws IOException{
+        String ask = DataInput.getString("Бажаєте повторити? (1 - так, 0 - ні) ");
+        while(!ask.equals("1")&&!ask.equals("0")){
+            ask = DataInput.getString("1 - повторити, 0 - закінчити ");
+        }
+    }
+
+    private static void repeatMethod()throws IOException{
+        method = DataInput.getString("Бажаєте повторити даний метод? (1 - так, 0 - ні) ");
+        while(!method.equals("1")&&!method.equals("0")){
+            method = DataInput.getString("1 - повторити, 0 - перейти до меню ");
+        }
+        if(method.equals("0")){
+            menu();
+        }
+    }
+
+    private static void menu() throws IOException {
         System.out.println("---------------- Меню ----------------\n" +
                 "1. Створити/видалити/редагувати факультет.\n" +
                 "2. Створити/видалити/редагувати кафедру факультета.\n" +
@@ -117,6 +211,9 @@ public class Tester extends Methods {
                 "10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.");
         method = DataInput.getString("\nОберіть номер методу, який бажаєте виконати: ");
     }
+
+
+
 
 
     //4. Знайти студента за ПІБ
