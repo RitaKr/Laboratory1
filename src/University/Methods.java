@@ -227,7 +227,7 @@ public class Methods extends University{
         return person;
     }
 
-    public static void addFaculty(String facultyName){
+    public static boolean addFaculty(String facultyName){
         //System.out.println(numberOfFaculties);
         if (!contains(faculties, facultyName)) {
             extendFacultyArray(numberOfFaculties + 1);
@@ -235,56 +235,66 @@ public class Methods extends University{
             faculties[numberOfFaculties - 1] = new Faculty(facultyName);
             updateStudentsAndTeachers();
             System.out.println("Факультет створено");
+            return true;
         } else {
             System.out.println("Факультет із такою назвою вже існує");
+            return false;
         }
     }
-    public static void editFaculty(String facultyName, String newName) {
+    public static boolean editFaculty(String facultyName, String newName) {
         Faculty faculty = findFaculty(facultyName);
         if (faculty!=null) {
             faculty.setFacultyName(newName);
             updateStudentsAndTeachers();
-            System.out.println("Назву факультету редаговано");
+            System.out.println("Назву факультету "+facultyName+" змінено на "+newName);
+            return true;
         } else {
-            System.out.println("Такого факультету не існує");
+            System.out.print("Факультету "+facultyName+" не існує! ");
+            return false;
         }
 
     }
-    public static void deleteFaculty(String facultyName) {
+    public static boolean deleteFaculty(String facultyName) {
         Faculty faculty = findFaculty(facultyName);
         if (faculty!=null) {
             Faculty[] arr_new = deleteArrItem(faculties, facultyName);
             numberOfFaculties = arr_new.length;
             faculties = arr_new;
             updateStudentsAndTeachers();
-            System.out.println("Факультет видалено");
+            System.out.println("Факультет "+facultyName+" видалено");
+            return true;
         } else {
-            System.out.println("Такого факультету не існує");
+            System.out.print("Факультету "+facultyName+" не існує! ");
+            return false;
         }
 
     }
 
-    public static void addSpecialty(String specialtyName, String facultyName) {
+    public static boolean addSpecialty(String specialtyName, String facultyName) {
         Faculty faculty = findFaculty(facultyName);
         if (faculty!=null && !contains(getAllSpecialties(), specialtyName)) {
             faculty.addSpecialty(specialtyName);
             updateStudentsAndTeachers();
             System.out.println("Спеціальність "+specialtyName+" створено на факультеті "+facultyName);
+            return true;
         } else {
-            System.out.println("Такого факультету не існує або спеціальність із такою назвою вже існує");
+            System.out.println("Факультету "+facultyName+" не існує або спеціальність з назвою "+specialtyName+" вже існує! Введіть коректні дані!");
+            return false;
         }
     }
-    public static void editSpecialty(String specialtyName, String newName) {
+    public static boolean editSpecialty(String specialtyName, String newName) {
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null) {
             specialty.setSpecialtyName(newName);
             updateStudentsAndTeachers();
-            System.out.println("Спеціальність відредаговано");
+            System.out.println("Назву спеціальності "+specialtyName+" змінено на "+newName);
+            return true;
         } else {
-            System.out.println("Такої спеціальності не існує");
+            System.out.print("Спеціальності "+specialtyName+" не існує! ");
+            return false;
         }
     }
-    public static void deleteSpecialty(String specialtyName) {
+    public static boolean deleteSpecialty(String specialtyName) {
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null) {
             Faculty faculty = findFaculty(specialty.getFaculty());
@@ -293,54 +303,64 @@ public class Methods extends University{
             faculty.setSpecialties(arr_new);
             updateStudentsAndTeachers();
             System.out.println("Спеціальність "+specialtyName+" видалено");
+            return true;
         } else {
-            System.out.println("Такої спеціальності не існує");
+            System.out.print("Спеціальності "+specialtyName+" не існує! ");
+            return false;
         }
 
     }
 
-    public static void addStudent(String studentName, int year, int group, String specialtyName) {
+    public static boolean addStudent(String studentName, int year, int group, String specialtyName) {
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null  && !contains(allStudents, studentName)) {
             //Faculty faculty = findFaculty(specialty.getFaculty());
             specialty.addStudent(studentName,year, group);
             updateStudentsAndTeachers();
             System.out.println("На кафедру "+specialtyName+" додано студента/студентку "+studentName+", рік: "+year+" група: "+group);
+            return true;
         } else {
-            System.out.println("Спеціальності, на яку Ви хочете додати студента, не існує або студент із таким іменем уже існує");
+            System.out.println("Спеціальності "+specialtyName+" не існує або студент із іменем "+studentName+" уже існує! Введіть коректні дані!");
+            return false;
         }
     }
-    public static void editStudentsName(String studentName, String newName) {
+    public static boolean editStudentsName(String studentName, String newName) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
             student.setName(normalizeCase(newName));
             updateStudentsAndTeachers();
-            System.out.println("ПІБ студента відредаговано на "+newName);
+            System.out.println("ПІБ студента "+studentName+" відредаговано на "+newName);
+            return true;
         } else {
-            System.out.println("Не знайдено студента для редагування");
+            System.out.print("Студента з іменем "+studentName+" не знайдено. ");
+            return false;
         }
     }
-    public static void editStudentsYear(String studentName, int year) {
+    public static boolean editStudentsYear(String studentName, int year) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
             student.setYear(year);
             updateStudentsAndTeachers();
             System.out.println("Курс студента "+studentName+" змінено на "+year);
+            return true;
         } else {
-            System.out.println("Не знайдено студента для редагування");
+            System.out.print("Студента з іменем "+studentName+" не знайдено. ");
+            return false;
         }
     }
-    public static void editStudentsGroup(String studentName, int group) {
+    public static boolean editStudentsGroup(String studentName, int group) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
             student.setGroup(group);
             updateStudentsAndTeachers();
             System.out.println("Групу студента "+studentName+" змінено на "+group);
+            return true;
         } else {
-            System.out.println("Не знайдено студента для редагування");
+            System.out.print("Студента з іменем "+studentName+" не знайдено. ");
+            return false;
         }
     }
-    public static void deleteStudent(String studentName) {
+    public static boolean deleteStudent(String studentName) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
             Specialty specialty = findSpecialty(student.getSpecialty());
@@ -350,8 +370,10 @@ public class Methods extends University{
             specialty.setStudents(arr_new);
             updateStudentsAndTeachers();
             System.out.println("Студента "+studentName+" видалено");
+            return true;
         } else {
-            System.out.println("Студента не знайдено");
+            System.out.print("Студента з іменем "+studentName+" не знайдено. ");
+            return false;
         }
     }
     public static boolean addTeacher(String teacherName, int[] years, int[] groups, String specialtyName) {
