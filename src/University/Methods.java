@@ -3,10 +3,10 @@ import java.util.Arrays;
 
 public class Methods extends University{
     /**
-     * Sorting Students by course (both smaller to greater and vise versa)
-     * @param allStudents array of students
-     * @param length length of array
-     * @param smallerToGreater sorting mode (true - smaller to greater, false - greater to smaller)
+     * Сортування студентів за курсом (як за зростанням, так і за спаданням)
+     * @param allStudents масив студентів
+     * @param length довжина масиву
+     * @param smallerToGreater метод сортування (true - за зростанням, false - за спаданням)
      */
     public static void sortByCourse(Student[] allStudents, int length, boolean smallerToGreater) {
         if (length > 1) { //sort as long as there is something to sort
@@ -27,17 +27,17 @@ public class Methods extends University{
                     }
                 }
             }
-
             sortByCourse(allStudents, length - 1, smallerToGreater); //one pass done, proceed to the next
         } else {
             showStudentsArr(allStudents);
         }
     }
+
     /**
-     * Sorting Students/Teachers by names (both smaller to greater and vise versa)
-     * @param allStudents array of students
-     * @param length length of array
-     * @param smallerToGreater sorting mode (true - smaller to greater, false - greater to smaller)
+     * Сортування студентів за ПІБ (як за зростанням, так і за спаданням)
+     * @param allStudents масив студентів
+     * @param length довжина масиву
+     * @param smallerToGreater метод сортування (true - за зростанням, false - за спаданням)
      */
     public static void sortByName(Student[] allStudents, int length, boolean smallerToGreater) {
         if (length > 1) { //sort as long as there is something to sort
@@ -86,10 +86,10 @@ public class Methods extends University{
         }
     }
     /**
-     * Sorting Teachers by names (both smaller to greater and vise versa)
-     * @param allTeachers array of teachers
-     * @param length length of array
-     * @param smallerToGreater sorting mode (true - smaller to greater, false - greater to smaller)
+     * Сортування викладачів за ПІБ (як за зростанням, так і за спаданням)
+     * @param allTeachers масив викладачів
+     * @param length довжина масиву
+     * @param smallerToGreater метод сортування (true - за зростанням, false - за спаданням)
      */
     public static void sortByName(Teacher[] allTeachers, int length, boolean smallerToGreater) {
         if (length > 1) { //sort as long as there is something to sort
@@ -104,9 +104,6 @@ public class Methods extends University{
                     boolean sorted = false;
                     int j = 0;
                     while (j < minNameLength && !sorted) {
-                        //checking if students are in order (left's name is smaller), if not, swap them
-                        //System.out.println(leftName.charAt(j)+" "+rightName.charAt(j));
-                        //System.out.println((int)leftName.charAt(j)+" "+(int)rightName.charAt(j));
                         if (leftCharIsGreater(leftName.charAt(j), rightName.charAt(j))){//comparing first letters of names of same-index elements of right and left arrays
                             Teacher temp = allTeachers[i];
                             allTeachers[i] = allTeachers[i + 1];
@@ -120,18 +117,6 @@ public class Methods extends University{
                             sorted = true;
                         }
                     }
-                    /*
-                    if (!sorted) {
-                        //if names are equal or one contains another
-                        if (leftNameLength <= rightNameLength) {//put left one if we sort a-z, and it's shorter or equal
-                            Teacher temp = allTeachers[i];
-                            allTeachers[i] = allTeachers[i + 1];
-                            allTeachers[i + 1] = temp;
-                        }
-
-                    }
-                    */
-
                 }
             }
             sortByName(allTeachers, length - 1, smallerToGreater); //one pass done, proceed to the next
@@ -162,13 +147,21 @@ public class Methods extends University{
                 ));
     }
 
+    /**
+     * Виведення студентів у консоль
+     * @param arr масив студентів
+     */
     public static void showStudentsArr(Student[] arr){
         for (int i=0; i<arr.length; i++){
             System.out.println((i+1) + ") " + arr[i]);
-
         }
         System.out.println();
     }
+
+    /**
+     * Виведення викладачів у консоль
+     * @param arr масив викладачів
+     */
     public static void showTeachersArr(Teacher[] arr){
         Teacher[] localArr = Arrays.copyOf(arr, arr.length);
         int k=1;
@@ -183,7 +176,11 @@ public class Methods extends University{
     }
 
 
-
+    /**
+     * Пошук факультету за назвою
+     * @param facultyName назва факультету
+     * @return faculty
+     */
     public static Faculty findFaculty(String facultyName) {
         Faculty faculty = null;
         for (Faculty f:faculties) {
@@ -194,6 +191,12 @@ public class Methods extends University{
         }
         return faculty;
     }
+
+    /**
+     * Пошук кафедри за назвою
+     * @param specialtyName назва кафедри
+     * @return specialty
+     */
     public static Specialty findSpecialty(String specialtyName) {
         Specialty specialty = null;
         for (Faculty f:faculties) {
@@ -208,6 +211,12 @@ public class Methods extends University{
         }
         return specialty;
     }
+
+    /**
+     * Пошук студента за ПІБ
+     * @param name ПІБ студента
+     * @return person
+     */
     public static Student findStudentByFullName(String name) {
         Student person = null;
         for (Student student:allStudents) {
@@ -217,6 +226,12 @@ public class Methods extends University{
         }
         return person;
     }
+
+    /**
+     * Пошук викладача за ПІБ
+     * @param name ПІБ викладача
+     * @return person
+     */
     public static Teacher findTeacherByFullName(String name) {
         Teacher person = null;
         for (Teacher teacher:allTeachers) {
@@ -227,6 +242,11 @@ public class Methods extends University{
         return person;
     }
 
+    /**
+     * Метод для створення факультету
+     * @param facultyName назва факультету
+     * @return true, якщо факультет створено та false, якщо факультет із такою назвою вже існує
+     */
     public static boolean addFaculty(String facultyName){
         //System.out.println(numberOfFaculties);
         if (!contains(faculties, facultyName)) {
@@ -241,6 +261,13 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Метод редагування назви факультету
+     * @param facultyName назва факультету
+     * @param newName нова назва факультету
+     * @return true, якщо назву факультету змінено та false, якщо факультет із такою назвою вже існує
+     */
     public static boolean editFaculty(String facultyName, String newName) {
         Faculty faculty = findFaculty(facultyName);
         if (faculty!=null) {
@@ -254,6 +281,12 @@ public class Methods extends University{
         }
 
     }
+
+    /**
+     * Метод, що дозволяє видаляти факультет разом з усіма кафедрами, студентами та викладачами
+     * @param facultyName назва факультету
+     * @return true, якщо факультет видалено та false, якщо факультету з такою назвою не існує
+     */
     public static boolean deleteFaculty(String facultyName) {
         Faculty faculty = findFaculty(facultyName);
         if (faculty!=null) {
@@ -270,30 +303,50 @@ public class Methods extends University{
 
     }
 
+    /**
+     * Створення спеціальності
+     * @param specialtyName назва спеціальності
+     * @param facultyName назва факультету
+     * @return true, якщо спеціальність створено на факультеті та false, якщо факультету
+     * з такою назвою не існує або спеціальність із такою назвою вже існує
+     */
     public static boolean addSpecialty(String specialtyName, String facultyName) {
         Faculty faculty = findFaculty(facultyName);
         if (faculty!=null && !contains(getAllSpecialties(), specialtyName)) {
             faculty.addSpecialty(specialtyName);
             updateStudentsAndTeachers();
-            System.out.println("Спеціальність "+specialtyName+" створено на факультеті "+facultyName);
+            System.out.println("Кафедру "+specialtyName+" створено на факультеті "+facultyName);
             return true;
         } else {
-            System.out.println("Факультету "+facultyName+" не існує або спеціальність з назвою "+specialtyName+" вже існує! Введіть коректні дані!");
+            System.out.println("Факультету "+facultyName+" не існує або кафедра з назвою "+specialtyName+" вже існує! Введіть коректні дані!");
             return false;
         }
     }
+
+    /**
+     * Редагування назви спеціальності
+     * @param specialtyName  назва спеціальності
+     * @param newName нова назва спеціальності
+     * @return true, якщо назву успішно змінено та false, якщо спеціальності із такою назвою не існує
+     */
     public static boolean editSpecialty(String specialtyName, String newName) {
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null) {
             specialty.setSpecialtyName(newName);
             updateStudentsAndTeachers();
-            System.out.println("Назву спеціальності "+specialtyName+" змінено на "+newName);
+            System.out.println("Назву кафедри "+specialtyName+" змінено на "+newName);
             return true;
         } else {
-            System.out.print("Спеціальності "+specialtyName+" не існує! ");
+            System.out.print("Кафедри "+specialtyName+" не існує! ");
             return false;
         }
     }
+
+    /**
+     * Видалення спеціальності разом з усіма студентами та викладачами
+     * @param specialtyName  назва спеціальності
+     * @return true, якщо кафедру успішно видалено та false, якщо такої кафедри не існує
+     */
     public static boolean deleteSpecialty(String specialtyName) {
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null) {
@@ -302,28 +355,43 @@ public class Methods extends University{
             faculty.setNumberOfSpecialties(arr_new.length);
             faculty.setSpecialties(arr_new);
             updateStudentsAndTeachers();
-            System.out.println("Спеціальність "+specialtyName+" видалено");
+            System.out.println("Кафедру "+specialtyName+" видалено");
             return true;
         } else {
-            System.out.print("Спеціальності "+specialtyName+" не існує! ");
+            System.out.print("Кафедри "+specialtyName+" не існує! ");
             return false;
         }
 
     }
 
+    /**
+     * Додавання студента до кафедри
+     * @param studentName ПІБ студента
+     * @param year рік навчання
+     * @param group група, у якій навчається студент
+     * @param specialtyName назва кафедри
+     * @return true, якщо студента успішно додано та false, якщо кафедри не існує або студент уже був доданий раніше
+     */
     public static boolean addStudent(String studentName, int year, int group, String specialtyName) {
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null  && !contains(allStudents, studentName)) {
             //Faculty faculty = findFaculty(specialty.getFaculty());
             specialty.addStudent(studentName,year, group);
             updateStudentsAndTeachers();
-            System.out.println("На кафедру "+specialtyName+" додано студента/студентку "+studentName+", рік: "+year+" група: "+group);
+            System.out.println("На кафедру "+specialtyName+" додано студента/студентку "+studentName+", рік: "+year+", група: "+group);
             return true;
         } else {
-            System.out.println("Спеціальності "+specialtyName+" не існує або студент із іменем "+studentName+" уже існує! Введіть коректні дані!");
+            System.out.println("Кафедри "+specialtyName+" не існує або студент із іменем "+studentName+" уже існує! Уведіть коректні дані!");
             return false;
         }
     }
+
+    /**
+     * Редагування ПІБ студента
+     * @param studentName ПІБ студента
+     * @param newName нове ПІБ
+     * @return true, якщо ПІБ відредаговано та false, якщо студента не знайдено
+     */
     public static boolean editStudentsName(String studentName, String newName) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
@@ -336,6 +404,13 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Редагування року навчання студента
+     * @param studentName ПІБ студента
+     * @param year рік навчання студента
+     * @return true, якщо курс студента змінено та false, якщо студента не знайдено
+     */
     public static boolean editStudentsYear(String studentName, int year) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
@@ -348,6 +423,13 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Редагування групи студента
+     * @param studentName ПІБ студента
+     * @param group група студента
+     * @return true, якщо групу студента змінено та false, якщо студента не знайдено
+     */
     public static boolean editStudentsGroup(String studentName, int group) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
@@ -360,6 +442,12 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Видалення студента з кафедри
+     * @param studentName ПІБ студента
+     * @return true, якщо студента видалено та false, якщо студента не знайдено
+     */
     public static boolean deleteStudent(String studentName) {
         Student student = findStudentByFullName(studentName);
         if (student!=null) {
@@ -376,6 +464,15 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Додавання викладача до кафедри
+     * @param teacherName ПІБ викладача
+     * @param years курси, які веде викладач
+     * @param groups групи, які веде викладач
+     * @param specialtyName назва кафедри
+     * @return true, якщо викладача додано до кафедри та false, якщо його не знайдено
+     */
     public static boolean addTeacher(String teacherName, int[] years, int[] groups, String specialtyName) {
         Specialty specialty = findSpecialty(specialtyName);
         if (specialty!=null) {
@@ -410,7 +507,6 @@ public class Methods extends University{
                         }
                     }
                 }
-                //Faculty faculty = findFaculty(specialty.getFaculty());
                 specialty.addTeacher(teacherName, years, groups, specs, facs);
                 updateStudentsAndTeachers();
                 System.out.println("Викладача з іменем "+teacherName+" додано на кафедру "+specialtyName);
@@ -422,6 +518,12 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Видалення викладача з університету
+     * @param teacherName ПІБ викладача
+     * @return true, якщо викладача видалено з університету та false, якщо його не знайдено
+     */
     public static boolean deleteTeacherCompletely(String teacherName) {
         Teacher teacher = findTeacherByFullName(teacherName);
         if (teacher!=null) {
@@ -440,10 +542,17 @@ public class Methods extends University{
             System.out.println("Викладача з іменем "+teacherName+" видалено з університету.");
             return true;
         } else {
-            System.out.print("Викладача з іменем "+teacherName+" не існує. ");
+            System.out.print("Викладача з іменем "+teacherName+" не знайдено");
             return false;
         }
     }
+
+    /**
+     * Видалення викладача з кафедри
+     * @param teacherName ПІБ викладача
+     * @param specialtyName
+     * @return true, якщо викладача видалено з кафедри та false, якщо його не знайдено
+     */
     public static boolean deleteTeacherFromSpecialty(String teacherName, String specialtyName) {
         Teacher teacher = findTeacherByFullName(teacherName);
         Specialty specialty = findSpecialty(specialtyName);
@@ -485,6 +594,13 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Редагування ПІБ викладача
+     * @param teacherName ПІБ викладача
+     * @param newName нове ПІБ
+     * @return true, якщо ПІБ викладача відредаговано та false, якщо його не знайдено
+     */
     public static boolean editTeachersName(String teacherName, String newName) {
         Teacher teacher = findTeacherByFullName(teacherName);
         if (teacher!=null) {
@@ -504,10 +620,17 @@ public class Methods extends University{
             System.out.println("Ім'я викладача "+teacherName+" змінено на "+newName+".");
             return true;
         } else {
-            System.out.print("Викладача з іменем "+teacherName+" не існує. ");
+            System.out.print("Викладача з іменем "+teacherName+" не знайдено. ");
             return false;
         }
     }
+
+    /**
+     * Редагування курсів, які веде викладач
+     * @param teacherName ПІБ викладача
+     * @param courses курси, які він веде
+     * @return true, якщо курси викладача відредаговано та false, якщо його не знайдено
+     */
     public static boolean editTeachersCourses(String teacherName, int[] courses) {
         Teacher teacher = findTeacherByFullName(teacherName);
         if (teacher!=null) {
@@ -530,6 +653,13 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Редагування груп викладача
+     * @param teacherName ПІБ викладача
+     * @param groups групи, які веде викладач
+     * @return true, якщо групи викладача відредаговано та false, якщо його не знайдено
+     */
     public static boolean editTeachersGroups(String teacherName, int[] groups) {
         Teacher teacher = findTeacherByFullName(teacherName);
         if (teacher!=null) {
@@ -553,6 +683,13 @@ public class Methods extends University{
             return false;
         }
     }
+
+    /**
+     * Видалення стрічки з масиву стрічок
+     * @param arr
+     * @param item
+     * @return arr_new
+     */
     private static String[] deleteArrItem(String[] arr, String item) {
         String[] arr_new = new String[arr.length-1];
         for(int i=0, k=0; i<arr.length; i++){
@@ -563,6 +700,13 @@ public class Methods extends University{
         }
         return arr_new;
     }
+
+    /**
+     * Видалення студенту з масиву студентів
+     * @param arr
+     * @param item
+     * @return arr_new
+     */
     private static Student[] deleteArrItem(Student[] arr, String item) {
         Student[] arr_new = new Student[arr.length-1];
         for(int i=0, k=0; i<arr.length; i++){
@@ -573,6 +717,13 @@ public class Methods extends University{
         }
         return arr_new;
     }
+
+    /**
+     * Видалення викладача з масиву викладачів
+     * @param arr
+     * @param item
+     * @return arr_new
+     */
     private static Teacher[] deleteArrItem(Teacher[] arr, String item) {
         Teacher[] arr_new = new Teacher[arr.length-1];
         for(int i=0, k=0; i<arr.length; i++){
@@ -583,6 +734,13 @@ public class Methods extends University{
         }
         return arr_new;
     }
+
+    /**
+     * Видалення кафедри з масиву кафедр
+     * @param arr
+     * @param item
+     * @return arr_new
+     */
     private static Specialty[] deleteArrItem(Specialty[] arr, String item) {
         Specialty[] arr_new = new Specialty[arr.length-1];
         for(int i=0, k=0; i<arr.length; i++){
@@ -593,6 +751,13 @@ public class Methods extends University{
         }
         return arr_new;
     }
+
+    /**
+     * Видалення факультету з масиву факультетів
+     * @param arr
+     * @param item
+     * @return arr_new
+     */
     private static Faculty[] deleteArrItem(Faculty[] arr, String item) {
         Faculty[] arr_new = new Faculty[arr.length-1];
         for(int i=0, k=0; i<arr.length; i++){
@@ -604,7 +769,11 @@ public class Methods extends University{
         return arr_new;
     }
 
-
+    /**
+     * Пошук студента за ПІБ або по будь-якій літері, яка міститься в ньому
+     * @param name ПІБ студента
+     * @return !null
+     */
     public static boolean findStudentsByNameAndShow(String name) {
         Student person = null;
         for (Student student:allStudents) {
@@ -614,9 +783,14 @@ public class Methods extends University{
             }
         }
         System.out.println();
-        //System.out.println("no matches found");
         return person != null;
     }
+
+    /**
+     * Пошук викладача за ПІБ або по будь-якій літері, яка міститься в ньому
+     * @param name ПІБ викладача
+     * @return !null
+     */
     public static boolean findTeachersByNameAndShow(String name) {
         Teacher person = null;
         for (Teacher teacher:allTeachers) {
@@ -628,7 +802,6 @@ public class Methods extends University{
             }
         }
         System.out.println();
-        //System.out.println("no matches found");
         return person != null;
 
     }
@@ -674,7 +847,6 @@ public class Methods extends University{
             }
 
         }
-        //System.out.println("no matches found");
         return person != null;
 
     }
@@ -720,7 +892,11 @@ public class Methods extends University{
         return contains;
     }
 
-    //making every first letter after space capital (if it's not)
+    /**
+     * Приведення першої букви стрічки до великої (якщо вона такою не є)
+     * @param string
+     * @return res
+     */
     public static String normalizeCase(String string) {
         String res="";
         char ch=string.charAt(0);

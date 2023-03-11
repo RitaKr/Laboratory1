@@ -12,117 +12,32 @@ public class Tester extends Methods {
         ukma = new University();
         System.out.println(ukma);
         menu();
-
-
-
-
-
-
-
-        //1. додавання, редагування, видалення факультетів
-        //addFaculty("фі");
-/*
-        addFaculty("ФГН");
-        addFaculty("ФПрН");
-        editFaculty("ФГН", "ФСНСТ");
-        deleteFaculty("ФПрН");
-
-        //2
-        addSpecialty("ПМ", "ФІ");
-        addSpecialty("Соціологія", "ФСНСТ");
-        addSpecialty("Журналістика", "ФСНСТ");
-        addSpecialty("Соц робота", "ФСНСТ");
-        addSpecialty("Міжнародні відносини", "ФСНСТ");
-        addSpecialty("Право", "ФСНСТ");
-        editSpecialty("Соц робота", "Психологія");
-        deleteSpecialty("Право");
-
-        //3.1
-        addStudent("Зубець Олена Сергіївна", 1, 2, "Міжнародні відносини");
-        deleteStudent("Прохоров Олександр Денисович");
-        editStudentsName("трохимчук артем андрійович", "трохимчук артемчик андрійович");
-        editStudentsYear("Красовський Андрій Олександрович", 4);
-        editStudentsGroup("Крижанівська Маргарита Сергіївна", 2);
-
-        //3.2
-        addTeacher("Калиновська Оксана В'ячеславівна", new int[] {2, 3}, new int[] {2, 3}, "ІПЗ");
-        addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "КН");
-        addTeacher("Ренчка Інна Євгеніївна", new int[] {1}, new int[] {1, 2}, "міжнародні відносини");
-        deleteTeacherFromSpecialty("Пєчкурова Олена Миколаївна", "Економіка");
-        deleteTeacherFromSpecialty("Пєчкурова Олена Миколаївна", "маркетинг");
-        deleteTeacherFromSpecialty("Ренчка Інна Євгеніївна", "Міжнародні відносини");
-        deleteTeacherCompletely("Калиновська Оксана В'ячеславівна");
-        editTeachersName("Проценко Володимир Семенович", "Проц Володимир Семенович");
-        editTeachersCourses("Пєчкурова Олена Миколаївна", new int[]{1, 4});
-        editTeachersGroups("Пєчкурова Олена Миколаївна", new int[]{1, 2});
-
-        //4
-        findStudentByName("шевчук");
-        findTeacherByName("Пєчкурова");
-        findTeacherByName("Глибовець");
-
-        //5
-        allStudentsSortedByCourse();
-        //6
-        facultyStudentsSortedByName("Фі");
-        facultyStudentsSortedByName("фснст");
-        facultyTeachersSortedByName("фі");
-        facultyTeachersSortedByName("фснст");
-
-        //7
-
-        specialtyStudentsSortedByCourse("ІПЗ");
-        specialtyStudentsSortedByCourse("кн");
-        specialtyStudentsSortedByCourse("економіка");
-        specialtyStudentsSortedByCourse("соціологія");
-        //8
-        specialtyStudentsSortedByName("ІПЗ");
-        specialtyTeachersSortedByName("ІПЗ");
-        specialtyStudentsSortedByName("кн");
-        specialtyTeachersSortedByName("кн");
-
-        specialtyStudentsSortedByName("економіка");
-        specialtyTeachersSortedByName("економіка");
-        specialtyStudentsSortedByName("психологія");
-        specialtyTeachersSortedByName("психологія");
-
-        //9
-        StudentsBySpecialtyAndYear("ІПЗ", 5);
-        StudentsBySpecialtyAndYear("ІПЗ", 1);
-        //10
-        StudentsBySpecialtyAndYearSortedByName("ІПЗ", 4);
-        StudentsBySpecialtyAndYearSortedByName("кн", 2);
-
-*/
-        //System.out.println(ukma);
-
-/*
-        String spec = DataInput.getString("enter speciality: ");
-        while (!specialtyStudentsSortedByName(spec)) {
-            spec = DataInput.getString("This specialty doesn't exist. Enter existing speciality: ");
-        }
-*/
-
-    /*for(int i=1025; i<1152; i++){
-            System.out.print((char)i+" ");
-        }*/
     }
+
+    /**
+     * Метод, що дозволяє подивитись поточну структуру університету після змін, внесених до нього
+     * @throws IOException
+     */
     private static void showUniversity() throws IOException {
         int ask = DataInput.getInt("Бажаєте подивитись поточну структуру університету? (1 - так, 0 - ні) ");
-        /*while(!ask.equals("1")&&!ask.equals("0")){
-            ask = DataInput.getString("1 - повторити, 0 - закінчити ");
-        }*/
+        while(ask!=0&&ask!=1){
+            ask = DataInput.getInt("1 - повторити, 0 - закінчити ");
+        }
         if (ask==1) System.out.println(ukma);
     }
 
+    /**
+     * Метод, у якому реалізовані всі можливості програми
+     * @throws IOException
+     */
     private static void menu() throws IOException {
         System.out.println("---------------- Меню ----------------\n" +
                 "1. Створити/видалити/редагувати факультет.\n" +
-                "2. Створити/видалити/редагувати кафедру факультета.\n" +
+                "2. Створити/видалити/редагувати кафедру факультету.\n" +
                 "3. Додати/видалити/редагувати студента/викладача до кафедри.\n" +
                 "4. Знайти студента/викладача за ПІБ, курсом або групою.\n" +
                 "5. Вивести всіх студентів впорядкованих за курсами.\n" +
-                "6. Вивести всіх студентів/викладачів факультета впорядкованих за алфавітом.\n" +
+                "6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом.\n" +
                 "7. Вивести всіх студентів кафедри впорядкованих за курсами.\n" +
                 "8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом.\n" +
                 "9. Вивести всіх студентів кафедри вказаного курсу.\n" +
@@ -135,7 +50,6 @@ public class Tester extends Methods {
 
         while(method.equals("2")){
             option2();
-
         }
 
         while(method.equals("3")){
@@ -150,19 +64,18 @@ public class Tester extends Methods {
                 } else if (n == 0) {
                     menu();
                 }
-
-        }
+            }
         while (method.equals("4")) {
             System.out.println("\nВи знаходитесь у пункті 4. Знайти студента/викладача за ПІБ. Кого бажаєте шукати? ");
             int n = DataInput.getInt("1 - студента, 2 - викладача; повернутись до головного меню - 0 ");
             if (n == 1) {
                 System.out.println("\nВи знаходитесь у пункті 4.1 Знайти студента за ПІБ ");
-                String name = DataInput.getString("Уведіть ПІБ або частину імені студента, якого шукаєте: ");
+                String name = DataInput.getString("Уведіть ПІБ студента, якого шукаєте: ");
                 findStudentByName(name);
 
             } else if (n == 2) {
                 System.out.println("\nВи знаходитесь у пункті 4.1 Знайти студента за ПІБ ");
-                String name = DataInput.getString("Уведіть ПІБ або частину імені викладача, якого шукаєте: ");
+                String name = DataInput.getString("Уведіть ПІБ викладача, якого шукаєте: ");
                 findTeacherByName(name);
 
             } else if (n == 0) {
@@ -174,20 +87,20 @@ public class Tester extends Methods {
             allStudentsSortedByCourse();
         }
         while (method.equals("6")) {
-            System.out.println("\nВи знаходитесь у пункті 6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом. ");
-            int n = DataInput.getInt("1 - студенти, 2 - викладачі; повернутись до головного меню - 0 ");
+            System.out.println("\nВи знаходитесь у пункті 6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом. Кого бажаєте вивести? ");
+            int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
             if (n == 1) {
                 System.out.println("\nВи знаходитесь у пункті 6.1. Вивести всіх студентів факультету впорядкованих за алфавітом. ");
                 String facultyName = DataInput.getString("Уведіть назву факультету, студентів якого бажаєте сортувати: ");
                 while (!facultyStudentsSortedByName(facultyName)){
-                    facultyName = DataInput.getString("Уведіть назву ІСНУЮЧОГО факультету: ");
+                    facultyName = DataInput.getString("Факультету "+facultyName+" не існує! Уведіть назву факультету, який вже існує: ");
                 }
 
             } else if (n == 2) {
                 System.out.println("\nВи знаходитесь у пункті 6.2. Вивести всіх викладачів факультету впорядкованих за алфавітом. ");
                 String facultyName = DataInput.getString("Уведіть назву факультету, викладачів якого бажаєте сортувати: ");
                 while (!facultyTeachersSortedByName(facultyName)) {
-                    facultyName = DataInput.getString("Уведіть назву ІСНУЮЧОГО факультету: ");
+                    facultyName = DataInput.getString("Факультету "+facultyName+" не існує! Уведіть назву факультету, який вже існує: ");
                 }
 
             } else if (n == 0) {
@@ -198,28 +111,27 @@ public class Tester extends Methods {
             System.out.println("\nВи знаходитесь у пункті 7. Вивести всіх студентів кафедри впорядкованих за курсами. ");
             String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
             while (!specialtyStudentsSortedByCourse(specialtyName)){
-                specialtyName = DataInput.getString("Уведіть назву ІСНУЮЧОЇ кафедри: ");
+                specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
             }
-            int repeat = DataInput.getInt("Повторити пункт 7? (1 - так; 0 - повернутись до головного меню) ");
-            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Введіть 0 або 1 ");
+            int repeat = DataInput.getInt("Повторити пункт 7? (1 - так; 0 - повернутись до головного меню): ");
+            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
             if (repeat==0) menu();
         }
         while (method.equals("8")) {
-            System.out.println("\nВи знаходитесь у пункті 8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом. ");
-
-            int n = DataInput.getInt("1 - студенти, 2 - викладачі; повернутись до головного меню - 0 ");
+            System.out.println("\nВи знаходитесь у пункті 8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом. Кого бажаєте вивести? ");
+            int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
             if (n == 1) {
                 System.out.println("\nВи знаходитесь у пункті 8.1 Вивести всіх студентів кафедри впорядкованих за алфавітом. ");
-                String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якої бажаєте сортувати: ");
                 while (!specialtyStudentsSortedByName(specialtyName)){
-                    specialtyName = DataInput.getString("Уведіть назву ІСНУЮЧОГО кафедри: ");
+                    specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
                 }
 
             } else if (n == 2) {
                 System.out.println("\nВи знаходитесь у пункті 8.2 Вивести всіх викладачів кафедри впорядкованих за алфавітом. ");
-                String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, викладачів якої бажаєте сортувати: ");
                 while (!specialtyTeachersSortedByName(specialtyName)) {
-                    specialtyName = DataInput.getString("Уведіть назву ІСНУЮЧОЇ кафедри: ");
+                    specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
                 }
             } else if (n == 0) {
                 menu();
@@ -227,20 +139,20 @@ public class Tester extends Methods {
         }
         while (method.equals("9")) {
             System.out.println("\nВи знаходитесь у пункті 9. Вивести всіх студентів кафедри вказаного курсу. ");
-            String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте вивести: ");
+            String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якої бажаєте вивести: ");
             int year = DataInput.getInt("Уведіть курс: ");
             while (year < 1 || year > 4) {
-                year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4) ");
+                year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
             }
             while (!StudentsBySpecialtyAndYear(specialtyName, year)){
-                specialtyName = DataInput.getString("Уведіть назву ІСНУЮЧОЇ кафедри: ");
+                specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
                 year = DataInput.getInt("Уведіть курс: ");
                 while (year < 1 || year > 4) {
-                    year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4) ");
+                    year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                 }
             }
             int repeat = DataInput.getInt("Повторити пункт 9? (1 - так; 0 - повернутись до головного меню) ");
-            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Введіть 0 або 1 ");
+            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
             if (repeat==0) menu();
         }
         while (method.equals("10")) {
@@ -248,47 +160,44 @@ public class Tester extends Methods {
             String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
             int year = DataInput.getInt("Уведіть курс: ");
             while (year < 1 || year > 4) {
-                year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4) ");
+                year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
             }
             while (!StudentsBySpecialtyAndYearSortedByName(specialtyName, year)){
-                specialtyName = DataInput.getString("Уведіть назву ІСНУЮЧОЇ кафедри: ");
+                specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
                 year = DataInput.getInt("Уведіть курс: ");
                 while (year < 1 || year > 4) {
-                    year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4) ");
+                    year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                 }
             }
             int repeat = DataInput.getInt("Повторити пункт 10? (1 - так; 0 - повернутись до головного меню) ");
-            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Введіть 0 або 1 ");
+            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
             if (repeat==0) menu();
         }
     }
     private static void option1() throws IOException {
-        System.out.println("\nВи знаходитесь у пункті 1. Створити/видалити/редагувати факультет. ");
-        int n = DataInput.getInt("Створити факультет - 1; видалити - 2; редагувати - 3; повернутись до головного меню - 0 ");
+        System.out.println("\nВи знаходитесь у пункті 1. Створити/видалити/редагувати факультет.");
+        int n = DataInput.getInt("1 - створити факультет; 2 - видалити; 3 - редагувати; повернутись до головного меню - 0\n" +
+                "Оберіть номер дії, яку бажаєте виконати:  ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (так - 1; скасувати поточну дію - 0) ");
+            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію): ");
             if (sure == 1) {
                 if (n == 1) {
                     String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте створити: ");
                     while (!addFaculty(facultyName)) {
-                        facultyName = DataInput.getString("Уведіть назву факультету, якого ще не існує! ");
+                        facultyName = DataInput.getString("Факультет із назвою "+facultyName+" вже існує! Уведіть іншу назву: ");
                     }
-                    ;
-                    //ask("створити факультет");
                 } else if (n == 2) {
                     String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте видалити: ");
                     while (!deleteFaculty(facultyName)) {
-                        facultyName = DataInput.getString("Уведіть назву ІСНУЮЧОГО факультету! ");
+                        facultyName = DataInput.getString("Факультету із назвою "+facultyName+" не існує! Уведіть назву факультету, що вже існує: ");
                     }
-                    //ask("видалити факультет");
                 } else if (n == 3) {
                     String facultyName = DataInput.getString("Уведіть назву факультету, яку бажаєте редагувати: ");
                     String newName = DataInput.getString("Уведіть нову назву для факультету " + facultyName + ": ");
                     while (!editFaculty(facultyName, newName)) {
-                        facultyName = DataInput.getString("Уведіть назву ІСНУЮЧОГО факультету: ");
+                        facultyName = DataInput.getString("Факультету із назвою "+facultyName+" не існує! Уведіть назву факультету, що вже існує: ");
                         newName = DataInput.getString("Уведіть нову назву для факультету " + facultyName + ": ");
                     }
-                    //ask("редагувати факультет");
                 }
                 showUniversity();
             }
@@ -297,10 +206,11 @@ public class Tester extends Methods {
         }
     }
     private static void option2() throws IOException {
-        System.out.println("\nВи знаходитесь у пункті 2. Створити/видалити/редагувати кафедру факультета.");
-        int n = DataInput.getInt("Створити кафедру - 1; видалити - 2; редагувати - 3; повернутись до головного меню - 0 ");
+        System.out.println("\nВи знаходитесь у пункті 2. Створити/видалити/редагувати кафедру факультету.");
+        int n = DataInput.getInt("1 - Створити кафедру; 2 - видалити; 3 - редагувати; повернутись до головного меню - 0\n" +
+                "Оберіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (так - 1; скасувати поточну дію - 0) ");
+            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
             if (sure == 1) {
                 if (n == 1) {
                     String facultyName = DataInput.getString("Уведіть назву факультету, на якому бажаєте створити кафедру: ");
@@ -309,20 +219,17 @@ public class Tester extends Methods {
                         facultyName = DataInput.getString("Уведіть назву факультету, на якому бажаєте створити кафедру: ");
                         specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте створити: ");
                     }
-                    //ask("створити кафедру");
                 } else if (n == 2) {
                     String specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте видалити: ");
                     while (!deleteSpecialty(specialtyName)) {
-                        specialtyName = DataInput.getString("Уведіть назву ІСНУЮЧОЇ кафедри, яку бажаєте видалити: ");
+                        specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
                     }
-                    //ask("видалити кафедру");
                 } else if (n == 3) {
                     String specialtyName = DataInput.getString("Уведіть назву кафедри, назву якої бажаєте редагувати: ");
                     String newName = DataInput.getString("Уведіть нову назву кафедри: ");
                     while (!editSpecialty(specialtyName, newName)) {
-                        specialtyName = DataInput.getString("Уведіть назву ІСНУЮЧОЇ кафедри, назву якої бажаєте змінити на " + newName + ": ");
+                        specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує, щоби змінити її на " + newName + ": ");
                     }
-                    //ask("редагувати кафедру");
                 }
                 showUniversity();
             }
@@ -331,30 +238,31 @@ public class Tester extends Methods {
         }
     }
     private static void option3Students() throws IOException {
-        System.out.println("\nПункт 3.1. Додати/видалити/редагувати студента до кафедри");
-        int n = DataInput.getInt("Додати студента до кафедри - 1; видалити - 2; редагувати - 3; повернутись до пункту 3 - 0 \n" +
-                "Уведіть номер дії, яку бажаєте виконати: ");
+        System.out.println("\nПункт 3.1. Додати/видалити/редагувати студента до кафедри.");
+        int n = DataInput.getInt("1 - додати студента до кафедри; 2 - видалити; 3 - редагувати; 0 - повернутись до пункту 3\n" +
+                "Оберіть номер дії, яку бажаєте виконати: ");
         if (n!=0){
-            int sure = DataInput.getInt("Ви впевнені? (так - 1; скасувати поточну дію - 0) ");
+            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію): ");
             if (sure == 1) {
                 //add student
                 if (n == 1) {
+                    System.out.println("\nПункт 3.1.1. Додавання студента до кафедри");
                     String specialtyName = DataInput.getString("Уведіть назву спеціальності, на яку бажаєте записати студента: ");
                     String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте записати на кафедру: ");
                     int year = DataInput.getInt("На якому курсі навчається студент? Уведіть номер (1-4): ");
                     while (year < 1 || year > 4) {
-                        year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4) ");
+                        year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                     }
-                    int group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-3)");
+                    int group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-3): ");
                     while (group < 1 || group > 3) {
-                        group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3)");
+                        group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3): ");
                     }
                     while (!addStudent(studentName, year, group, specialtyName)) {
                         specialtyName = DataInput.getString("Уведіть назву спеціальності, на яку бажаєте записати студента: ");
                         studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте записати на кафедру: ");
                         year = DataInput.getInt("На якому курсі навчається студент? Уведіть номер (1-4): ");
                         while (year < 1 || year > 4) {
-                            year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4) ");
+                            year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                         }
                         group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-3) ");
                         while (group < 1 || group > 3) {
@@ -365,9 +273,10 @@ public class Tester extends Methods {
                 }
                 //delete student
                 else if (n == 2) {
-                    String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте видалити: ");
+                    System.out.println("\nПункт 3.1.2. Видалення студента з кафедри");
+                    String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте відрахувати: ");
                     while (!deleteStudent(studentName)) {
-                        studentName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО студента, якого бажаєте видалити: ");
+                        studentName = DataInput.getString("Студента "+studentName+" не існує! Уведіть ім'я справжнього студента: ");
                     }
                     showUniversity();
                 }
@@ -388,25 +297,25 @@ public class Tester extends Methods {
         int n = DataInput.getInt("1 - редагувати ПІБ; 2 - редагувати курс; 3 - редагувати групу; 0 - повернутись до пункту 3.1 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (так - 1; скасувати поточну дію - 0) ");
+            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
             if (sure == 1) {
                 if (n == 1) {
                     String newName = DataInput.getString("Уведіть новий ПІБ студента "+studentName+": ");
                     while (!editStudentsName(studentName, newName)) {
-                        studentName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО студента: ");
+                        studentName = DataInput.getString("Студента з іменем "+studentName+" не існує! Уведіть ПІБ справжнього студента: ");
                         newName = DataInput.getString("Уведіть новий ПІБ студента "+studentName+": ");
                     }
                 } else if (n==2) {
                     int year = DataInput.getInt("Уведіть новий курс студента "+studentName+": ");
                     while (!editStudentsYear(studentName, year)) {
-                        studentName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО студента: ");
+                        studentName = DataInput.getString("Студента з іменем "+studentName+" не існує! Уведіть ПІБ справжнього студента: ");
                         year = DataInput.getInt("Уведіть новий курс студента "+studentName+": ");
                     }
 
                 } else if (n==3) {
                     int group = DataInput.getInt("Уведіть нову групу студента "+studentName+": ");
                     while (!editStudentsGroup(studentName, group)) {
-                        studentName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО студента: ");
+                        studentName = DataInput.getString("Студента з іменем "+studentName+" не існує! Уведіть ПІБ справжнього студента: ");
                         group = DataInput.getInt("Уведіть нову групу студента "+studentName+": ");
                     }
                 }
@@ -420,12 +329,12 @@ public class Tester extends Methods {
     }
     private static void option3Teachers() throws IOException {
         System.out.println("\nПункт 3.2. Додати/видалити/редагувати викладача до кафедри");
-        int n = DataInput.getInt("Додати викладача до кафедри - 1; видалити - 2; редагувати - 3; повернутись до пункту 3 - 0 \n" +
+        int n = DataInput.getInt("1 - додати викладача до кафедри; 2 - видалити; 3 - редагувати; 0 - повернутись до пункту 3 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (так - 1; скасувати поточну дію - 0) ");
+            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
             if (sure == 1) {
-                //add student
+                //додати викладача
                 if (n == 1) {
                     String specialtyName = DataInput.getString("Уведіть назву кафедри, на яку бажаєте додати викладача: ");
                     String teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте додати на кафедру: ");
@@ -440,14 +349,14 @@ public class Tester extends Methods {
                     }
                     showUniversity();
                 }
-                //delete student
+                //видалити викладача
                 else if (n == 2) {
                     sure = 0;
                     String teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте видалити: ");
                     while (sure == 0) {
                         int del = DataInput.getInt("Видалити викладача " + teacherName + " з університету чи тільки з певної кафедри? " +
                                 "(1 - з кафедри; 2 - з університету) ");
-                        sure = DataInput.getInt("Ви впевнені? (так - 1; скасувати поточну дію - 0) ");
+                        sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
                         if (sure == 1) {
                             if (del == 1) {
                                 String specialtyName = DataInput.getString("Уведіть назву кафедри, з якої бажаєте видалити викладача: ");
@@ -457,14 +366,14 @@ public class Tester extends Methods {
                                 }
                             } else if (del == 2) {
                                 while (!deleteTeacherCompletely(teacherName)) {
-                                    teacherName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО викладача, якого бажаєте видалити: ");
+                                    teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
                                 }
                             }
                             showUniversity();
                         }
                     }
                 }
-                //edit student
+                //редагувати викладача
                 else if (n==3) {
                     System.out.println("\nПункт 3.2.3. Редагування викладача");
                     String teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте редагувати: ");
@@ -479,25 +388,25 @@ public class Tester extends Methods {
         int n = DataInput.getInt("1 - редагувати ПІБ; 2 - редагувати курси; 3 - редагувати групи; 0 - повернутись до пункту 3.1 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (так - 1; скасувати поточну дію - 0) ");
+            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
             if (sure == 1) {
                 if (n == 1) {
                     String newName = DataInput.getString("Уведіть новий ПІБ викладача "+teacherName+": ");
                     while (!editTeachersName(teacherName, newName)) {
-                        teacherName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО викладача: ");
+                        teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
                         newName = DataInput.getString("Уведіть новий ПІБ викладача "+teacherName+": ");
                     }
                 } else if (n==2) {
                     int[] years = fillArr(4);
                     while (!editTeachersCourses(teacherName, years)) {
-                        teacherName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО викладача: ");
+                        teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
                         years = fillArr(4);
                     }
 
                 } else if (n==3) {
                     int[] groups = fillArr(3);
                     while (!editTeachersGroups(teacherName, groups)) {
-                        teacherName = DataInput.getString("Уведіть ПІБ ІСНУЮЧОГО викладача: ");
+                        teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
                         groups = fillArr(3);
                     }
                 }
@@ -514,13 +423,12 @@ public class Tester extends Methods {
         int k=0;
         if (length==4){
             for (int i=0; i<length; i++) {
-                int year = DataInput.getInt("На яких курсах викладає викладач? Уведіть номер (1-4) або 0, щоб зупинити введення курсів: ");
+                int year = DataInput.getInt("На яких курсах викладає викладач? Уведіть номер (1-4) або 0, щоби зупинити введення: ");
                 while (((year < 1 || year > 4) && year!=0) || contains(arr, year)) {
                     if (year==0) break;
-                    if (contains(arr, year)) year = DataInput.getInt("Ви вже додавали цей курс, введіть інший або закінчіть введення, відправивши 0 ");
-                    else year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4) ");
+                    if (contains(arr, year)) year = DataInput.getInt("Ви вже додавали цей курс! Уведіть інший номер курсу або натисніть 0, щоби завершити введення: ");
+                    else year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                 }
-
                 if (year==0) break;
                 else{
                     arr[i] = year;
@@ -530,13 +438,12 @@ public class Tester extends Methods {
         }
         if (length==3){
             for (int i=0; i<length; i++) {
-                int group = DataInput.getInt("У яких групах викладає викладач? Уведіть номер (1-3) або 0, щоб зупинити введення груп: ");
+                int group = DataInput.getInt("У яких групах викладає викладач? Уведіть номер (1-3) або 0, щоб зупинити введення: ");
                 while (((group < 1 || group > 3) && group!=0) || contains(arr, group)) {
                     if (group==0) break;
-                    if (contains(arr, group)) group = DataInput.getInt("Ви вже додавали цю групу, введіть іншу або закінчіть введення, відправивши 0 ");
-                    else group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3) ");
+                    if (contains(arr, group)) group = DataInput.getInt("Ви вже додавали цю групу! Уведіть інший номер групи або натисніть 0, щоби зупинити введення: ");
+                    else group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3): ");
                 }
-
                 if (group==0) break;
                 else{
                     arr[i] = group;
@@ -550,70 +457,47 @@ public class Tester extends Methods {
         return croppedArr;
     }
 
-
-
-
     //4. Знайти студента за ПІБ
     private static void findStudentByName(String name) {
-        System.out.println("Searching for students with "+name+" in their full name...");
-        if (!findStudentsByNameAndShow(name)) System.out.println("Не знайдено жодного студента");
+        System.out.println("Результат пошуку студента за ім'ям "+name+":");
+        if (!findStudentsByNameAndShow(name)) System.out.println("Співпадінь не знайдено");
     }
     //4.Знайти викладача за ПІБ
     private static void findTeacherByName(String name) {
-        System.out.println("Searching for teachers with "+name+" in their full name...");
-        if (!findTeachersByNameAndShow(name)) System.out.println("no teachers found");
-    }
-    //4. Знайти студента за курсом.
-    private static void findStudentByCourse(int year) {
-        System.out.println("Searching for students who study "+year+" course...");
-        if (!findStudentsByCourseAndShow(year)) System.out.println("no students found");
-    }
-    //4.Знайти викладача за курсом.
-    private static void findTeacherByCourse(int year) {
-        System.out.println("Searching for teachers who teach on "+year+" course...");
-        if (!findTeachersByCourseAndShow(year)) System.out.println("no teachers found");
-    }
-    //4. Знайти студента за групою.
-    private static void findStudentByGroup(int group) {
-        System.out.println("Searching for students who study in group "+group+"...");
-        if (!findStudentsByGroupAndShow(group)) System.out.println("no students found");
-    }
-    //4.Знайти викладача за групою.
-    private static void findTeacherByGroup(int group) {
-        System.out.println("Searching for teachers who teach in group "+group+"...");
-        if (!findTeachersByGroupAndShow(group)) System.out.println("no teachers found");
+        System.out.println("Результат пошуку викладача за ім'ям "+name+":");
+        if (!findTeachersByNameAndShow(name)) System.out.println("Співпадінь не знайдено");
     }
 
     //5. Вивести всіх студентів впорядкованих за курсами.
     private static void allStudentsSortedByCourse() {
-        //System.out.println("All students sorted by course");
-        if (ukma.getNumberOfStudents()==0) System.out.println("there are no students in this university");
+        System.out.println("Ось список всіх студентів, впорядкованих за курсами: ");
+        if (ukma.getNumberOfStudents()==0) System.out.println("В університеті немає студентів");
         else sortByCourse(ukma.getAllStudents(), ukma.getNumberOfStudents(), true);
     }
 
-    //6. Вивести всіх студентів факультета впорядкованих за алфавітом.
+    //6. Вивести всіх студентів факультету впорядкованих за алфавітом.
     private static boolean facultyStudentsSortedByName(String facultyName) {
         Faculty f = findFaculty(facultyName);
         if (f!=null) {
-            //System.out.println(facultyName+" students sorted by name");
-            if (f.getNumberOfStudents()==0) System.out.println("there are no students on "+f.getFacultyName());
+            System.out.println("Студенти факультету "+facultyName+" впорядковані за алфавітом: ");
+            if (f.getNumberOfStudents()==0) System.out.println("На факультеті "+f.getFacultyName()+" немає студентів");
             else sortByName(f.getStudents(), f.getNumberOfStudents(), true);
             return true;
         } else {
-            System.out.print("faculty "+facultyName+" doesn't exist. ");
+            System.out.print("Факультету "+facultyName+" не існує!");
             return false;
         }
     }
-    //6. Вивести всіх викладачів факультета впорядкованих за алфавітом.
+    //6. Вивести всіх викладачів факультету впорядкованих за алфавітом.
     private static boolean facultyTeachersSortedByName(String facultyName) {
         Faculty f = findFaculty(facultyName);
         if (f!=null) {
-            //System.out.println(facultyName+" teachers sorted by name");
-            if (f.getNumberOfTeachers()==0) System.out.println("there are no teachers on "+f.getFacultyName());
+            System.out.println("Викладачі факультету "+facultyName+" впорядковані за алфавітом: ");
+            if (f.getNumberOfTeachers()==0) System.out.println("На факультеті "+f.getFacultyName()+" немає викладачів");
             else sortByName(f.getTeachers(), f.getNumberOfTeachers(), true);
             return true;
         } else {
-            System.out.print("faculty "+facultyName+" doesn't exist. ");
+            System.out.print("Факультету "+facultyName+" не існує!");
             return false;
         }
     }
@@ -621,12 +505,12 @@ public class Tester extends Methods {
     private static boolean specialtyStudentsSortedByCourse(String specialtyName) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
-            //System.out.println(specialtyName+" students sorted by course");
-            if (s.getNumberOfStudents()==0) System.out.println("there are no students on "+s.getSpecialtyName());
+            System.out.println("Студенти кафедри "+specialtyName+" впорядковані за курсом:");
+            if (s.getNumberOfStudents()==0) System.out.println("На кафедрі "+s.getSpecialtyName()+" немає студентів");
             else sortByCourse(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
-            System.out.print("specialty "+specialtyName+" doesn't exist. ");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -635,12 +519,12 @@ public class Tester extends Methods {
     private static boolean specialtyStudentsSortedByName(String specialtyName) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
-            //System.out.println(specialtyName+" students sorted by name");
-            if (s.getNumberOfStudents()==0) System.out.println("there are no students on "+s.getSpecialtyName());
+            System.out.println("Студенти кафедри "+specialtyName+" впорядковані за алфавітом: ");
+            if (s.getNumberOfStudents()==0) System.out.println("На кафедрі "+s.getSpecialtyName()+" немає студентів");
             else sortByName(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
-            System.out.print("specialty "+specialtyName+" doesn't exist. ");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -648,12 +532,12 @@ public class Tester extends Methods {
     private static boolean specialtyTeachersSortedByName(String specialtyName) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
-            //System.out.println(specialtyName+" teachers sorted by name");
-            if (s.getNumberOfTeachers()==0) System.out.println("there are no teachers on "+s.getSpecialtyName());
+            System.out.println("Викладачі кафедри "+specialtyName+" впорядковані за алфавітом: ");
+            if (s.getNumberOfTeachers()==0) System.out.println("На кафедрі "+s.getSpecialtyName()+" немає викладачів");
             else sortByName(s.getTeachers(), s.getNumberOfTeachers(), true);
             return true;
         } else {
-            System.out.print("specialty "+specialtyName+" doesn't exist. ");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -661,7 +545,7 @@ public class Tester extends Methods {
     private static boolean StudentsBySpecialtyAndYear(String specialtyName, int year) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
-            //System.out.println(specialtyName+" students on "+year+" course: ");
+            System.out.println("Студенти кафедри "+specialtyName+"  "+year+" року навчання: ");
             int k=1;
             for (Student student:s.getStudents()){
                 if (student.getYear()==year) {
@@ -669,11 +553,11 @@ public class Tester extends Methods {
                     k++;
                 }
             }
-            if (k==1) System.out.println("there are no student's on "+year+" course of "+s.getSpecialtyName());
+            if (k==1) System.out.println("Студентів кафедри "+s.getSpecialtyName()+" "+year+" року навчання не існує");
             System.out.println();
             return true;
         } else {
-            System.out.print("specialty "+specialtyName+" doesn't exist. ");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -681,7 +565,7 @@ public class Tester extends Methods {
     private static boolean StudentsBySpecialtyAndYearSortedByName(String specialtyName, int year) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
-            //System.out.println(specialtyName+" students on "+year+" course, sorted by name: ");
+            System.out.println("Студенти кафедри "+specialtyName+" "+year+" року навчання впорядковані за алфавітом: ");
             int k=0;
             for (Student student:s.getStudents()) if (student.getYear()==year) k++;
             Student[] students =  new Student[k];
@@ -692,11 +576,11 @@ public class Tester extends Methods {
                     k++;
                 }
             }
-            if (k==0) System.out.println("there are no student's on "+year+" course of "+s.getSpecialtyName());
+            if (k==0) System.out.println("Студентів кафедри "+s.getSpecialtyName()+" "+year+" року навчання не існує");
             else sortByName(students, students.length, true);
             return true;
         } else {
-            System.out.print("specialty "+specialtyName+" doesn't exist. ");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
