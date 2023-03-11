@@ -484,7 +484,7 @@ public class Tester extends Methods {
             else sortByName(f.getStudents(), f.getNumberOfStudents(), true);
             return true;
         } else {
-            System.out.print("Факультету "+facultyName+" не існує!");
+            //System.out.print("Факультету "+facultyName+" не існує!");
             return false;
         }
     }
@@ -497,7 +497,7 @@ public class Tester extends Methods {
             else sortByName(f.getTeachers(), f.getNumberOfTeachers(), true);
             return true;
         } else {
-            System.out.print("Факультету "+facultyName+" не існує!");
+            //System.out.print("Факультету "+facultyName+" не існує!");
             return false;
         }
     }
@@ -510,7 +510,7 @@ public class Tester extends Methods {
             else sortByCourse(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
-            System.out.print("Кафедри "+specialtyName+" не існує!");
+            //System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -524,7 +524,7 @@ public class Tester extends Methods {
             else sortByName(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
-            System.out.print("Кафедри "+specialtyName+" не існує!");
+            //System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -537,7 +537,7 @@ public class Tester extends Methods {
             else sortByName(s.getTeachers(), s.getNumberOfTeachers(), true);
             return true;
         } else {
-            System.out.print("Кафедри "+specialtyName+" не існує!");
+           // System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -557,7 +557,7 @@ public class Tester extends Methods {
             System.out.println();
             return true;
         } else {
-            System.out.print("Кафедри "+specialtyName+" не існує!");
+            //System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
@@ -580,7 +580,7 @@ public class Tester extends Methods {
             else sortByName(students, students.length, true);
             return true;
         } else {
-            System.out.print("Кафедри "+specialtyName+" не існує!");
+            //System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
