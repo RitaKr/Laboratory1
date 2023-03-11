@@ -413,10 +413,12 @@ public class Methods extends University{
                 //Faculty faculty = findFaculty(specialty.getFaculty());
                 specialty.addTeacher(teacherName, years, groups, specs, facs);
                 updateStudentsAndTeachers();
+                System.out.println("Викладача з іменем "+teacherName+" додано на кафедру "+specialtyName);
                 return true;
             }
         } else {
-            //System.out.println("this specialty doesn't exist");
+            System.out.println("Кафедри "+specialtyName+" не існує, або викладач з іменем "+teacherName+" вже є на цій кафедрі. " +
+                    "Введіть коректні дані! ");
             return false;
         }
     }
@@ -435,9 +437,10 @@ public class Methods extends University{
                 }
             }
             updateStudentsAndTeachers();
+            System.out.println("Викладача з іменем "+teacherName+" видалено з університету.");
             return true;
         } else {
-            //System.out.println("this specialty doesn't exist");
+            System.out.print("Викладача з іменем "+teacherName+" не існує. ");
             return false;
         }
     }
@@ -474,9 +477,11 @@ public class Methods extends University{
                 }
             }
             updateStudentsAndTeachers();
+            System.out.println("Викладача з іменем "+teacherName+" видалено з кафедри "+specialtyName+".");
             return true;
         } else {
-            System.out.println("this specialty or student doesn't exist, or this teacher doesn't work on this specialty");
+            System.out.println("Викладача з іменем "+teacherName+" не існує, або він не викладає на кафедрі "+specialtyName+" (або цієї спеціальності взагалі не існує). " +
+                    "Введіть коректні дані! ");
             return false;
         }
     }
@@ -496,9 +501,10 @@ public class Methods extends University{
                 }
             }
             updateStudentsAndTeachers();
+            System.out.println("Ім'я викладача "+teacherName+" змінено на "+newName+".");
             return true;
         } else {
-            //System.out.println("this specialty doesn't exist");
+            System.out.print("Викладача з іменем "+teacherName+" не існує. ");
             return false;
         }
     }
@@ -517,9 +523,10 @@ public class Methods extends University{
                 }
             }
             updateStudentsAndTeachers();
+            System.out.println("Курси викладача "+teacherName+" змінено.");
             return true;
         } else {
-            //System.out.println("this specialty doesn't exist");
+            System.out.print("Викладача з іменем "+teacherName+" не існує. ");
             return false;
         }
     }
@@ -539,9 +546,10 @@ public class Methods extends University{
                 }
             }
             updateStudentsAndTeachers();
+            System.out.println("Групи викладача "+teacherName+" змінено.");
             return true;
         } else {
-            //System.out.println("this specialty doesn't exist");
+            System.out.print("Викладача з іменем "+teacherName+" не існує. ");
             return false;
         }
     }
@@ -671,7 +679,7 @@ public class Methods extends University{
 
     }
 
-    private static boolean contains(int[] arr, int item){
+    public static boolean contains(int[] arr, int item){
         boolean contains = false;
         for (int i:arr) if (i==item) {
             contains = true;
