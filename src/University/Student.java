@@ -1,4 +1,9 @@
 package University;
+
+/**
+ * Клас Student.java, що наслідує клас Human.java
+ * У цьому класі студенту присвоюються певні параметри, як от: рік навчання та група
+ */
 public class Student  extends Human {
     private int group;
     private int year;
@@ -8,8 +13,15 @@ public class Student  extends Human {
         super(name);
         this.year = year;
         this.group = group;
-
     }
+
+    /**
+     * Повний конструктор студента з 4-ма параметрами
+     * @param name ПІБ студента
+     * @param year курс
+     * @param group група
+     * @param specialty кафедра
+     */
     public Student(String name, int year, int group, String specialty){
         super(name);
         this.year = year;
@@ -34,20 +46,24 @@ public class Student  extends Human {
     }
 
     /**
-     * Year getter
-     * @return year of study
+     * Геттер курсу студента
+     * @return рік навчання
      */
     public int getYear() {
         return year;
     }
     /**
-     * Group getter
-     * @return student's group
+     * Геттер групи студента
+     * @return група студента
      */
     public int getGroup() {
         return group;
     }
 
+    /**
+     * Метод для виведення інформації про студента
+     * @return перевизначена стрічка з класу Human.java
+     */
     public String toString() {
         return super.toString()+" ("+specialty+"-"+year+", група: "+group+")";
     }

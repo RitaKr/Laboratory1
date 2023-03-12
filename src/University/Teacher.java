@@ -1,6 +1,9 @@
 package University;
-import java.util.Arrays;
 
+/**
+ * Клас Teacher.java, що наслідує клас Human.java
+ * У цьому класі викладачу присвоюються певні параметри, як от: факультет та кафедра, на яких він викладає
+ */
 public class Teacher extends Human {
     private int[] groups;
     private int[] years;
@@ -10,8 +13,16 @@ public class Teacher extends Human {
         super(name);
         this.years = years;
         this.groups = groups;
-
     }
+
+    /**
+     * Повний конструктор викладача з 5-ма параметрами
+     * @param name ПІБ викладача
+     * @param years курси, на яких викладає
+     * @param groups групи, у яких викладає
+     * @param specialties кафедри, на яких веде групи викладач
+     * @param faculties факультети, на яких викладач працює
+     */
     public Teacher(String name, int[] years, int[] groups, String[] specialties, String[] faculties){
         super(name);
         this.years = years;
@@ -21,45 +32,45 @@ public class Teacher extends Human {
     }
 
     /**
-     * Years getter
-     * @return year of study
+     * Геттер курсів викладача
+     * @return курси
      */
     public int[] getYears() {
         return years;
     }
     /**
-     * Groups getter
-     * @return student's group
+     * Геттер груп викладача
+     * @return групи
      */
     public int[] getGroups() {
         return groups;
     }
 
     /**
-     * Years setter
-     * @return array of courses where they teach
+     * Сеттер курсів викладача
+     * @return масив курсів викладача
      */
     public void setYears(int[] years) {
         this.years = years;
     }
     /**
      * Groups setter
-     * @return array of group where they teach
+     * @return масив груп викладача
      */
     public void setGroups(int[] groups) {
         this.groups = groups;
     }
     /**
-     * Add course to array of courses
-     * @return array of courses where they teach
+     * Метод додавання курсів до масиву курсів викладача
+     * @return масив курсів викладача
      */
     public void addYear(int year) {
         years = extendIntArray(years, years.length+1);
         years[years.length-1] = year;
     }
     /**
-     * Add group to array of groups
-     * @return array of group where they teach
+     * Метод додавання груп до масиву груп викладача
+     * @return масив груп викладача
      */
     public void addGroup(int group) {
         groups = extendIntArray(groups, groups.length+1);
@@ -82,37 +93,55 @@ public class Teacher extends Human {
         return faculties;
     }
     /**
-     * Add course to array of courses
-     * @return array of courses where they teach
+     * Метод додавання кафедр до масиву кафедр
+     * @return масив кафедр, на яких працює викладач
      */
     public void addSpecialty(String specialty) {
         specialties = extendStringArray(specialties, specialties.length+1);
         specialties[specialties.length-1] = specialty;
     }
     /**
-     * Add group to array of groups
-     * @return array of group where they teach
+     * Метод додавання факультетів до масиву факультетів
+     * @return масив факультетів, на яких працює викладач
      */
     public void addFaculty(String faculty) {
         faculties = extendStringArray(faculties, faculties.length+1);
         faculties[faculties.length-1] = faculty;
     }
+
+    /**
+     * Метод розширення цілочисельних масивів
+     * @param prevArr
+     * @param n
+     * @return розширений масив
+     */
     private int[] extendIntArray(int[] prevArr, int n){
         int[] extendedArr = new int[n];
         for (int i=0; i<prevArr.length; i++) {
             extendedArr[i] = prevArr[i];
         }
         return extendedArr;
-        //System.out.println(Arrays.toString(faculties));
     }
+
+    /**
+     * Метод розширення масиву стрічок
+     * @param prevArr
+     * @param n
+     * @return розширений масив
+     */
     private String[] extendStringArray(String[] prevArr, int n){
         String[] extendedArr = new String[n];
         for (int i=0; i<prevArr.length; i++) {
             extendedArr[i] = prevArr[i];
         }
         return extendedArr;
-        //System.out.println(Arrays.toString(faculties));
     }
+
+    /**
+     * Метод виведення інформації про те, на яких факультетах, кафедрах працює викладач,
+     * а також на яких курсах та у яких групах він викладає
+     * @return перевизначена стрічка з класу Human.java
+     */
     public String toString() {
         return super.toString()+" (курси: "+arrayToString(years)+", групи: "+arrayToString(groups) +
                 ", факультети: "+arrayToString(faculties)+", спеціальності: "+arrayToString(specialties)+")";

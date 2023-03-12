@@ -1,8 +1,8 @@
 package University;
-import java.util.Arrays;
 
-import static University.University.updateStudentsAndTeachers;
-
+/**
+ * Клас Specialty.java, у якому кафедрі певного факультету присвоюються параметри, як от: кількість студентів та викладачів
+ */
 public class Specialty {
     private String specialtyName;
     private int numberOfStudents;
@@ -11,6 +11,13 @@ public class Specialty {
     private Teacher[] teachers;
     private String faculty;
 
+    /**
+     * Повний конструктор кафедри певного факультету
+     * @param name назва кафедри
+     * @param students масив студентів
+     * @param teachers масив викладачів
+     * @param faculty назва факультету, якому належить кафедра
+     */
     Specialty(String name, Student[] students, Teacher[] teachers, String faculty){
         specialtyName = name;
         this.students = students;
@@ -28,19 +35,38 @@ public class Specialty {
         this.faculty=faculty;
     }
 
+    /**
+     * Метод додавання студента до кафедри
+     * @param name ПІБ студента
+     * @param year курс
+     * @param group група
+     */
     public void addStudent(String name, int year, int group){
         //System.out.println(numberOfFaculties);
         extendStudentsArray(numberOfStudents+1);
         //System.out.println(numberOfFaculties);
         students[numberOfStudents-1]=new Student(name, year, group, specialtyName);
-
     }
+
+    /**
+     * Метод додавання викладача до кафедри
+     * @param name ПІб викладача
+     * @param years курси, які веде викладач
+     * @param groups групи викладача
+     * @param specialties кафедри, на яких викладач працює
+     * @param faculties факультети, на яких викладач працює
+     */
     public void addTeacher(String name, int[] years, int[] groups, String[] specialties, String[] faculties){
         //System.out.println(numberOfFaculties);
         extendTeachersArray(numberOfTeachers+1);
         //System.out.println(numberOfFaculties);
         teachers[numberOfTeachers-1]=new Teacher(name, years, groups, specialties, faculties);
     }
+
+    /**
+     * Метод розширення масиву студентів
+     * @param n
+     */
     private void extendStudentsArray(int n){
         Student[] extendedArr = new Student[n];
         for (int i=0; i<numberOfStudents; i++) {
@@ -48,8 +74,12 @@ public class Specialty {
         }
         numberOfStudents = n;
         students = extendedArr;
-        //System.out.println(Arrays.toString(students));
     }
+
+    /**
+     * Метод розширення масиву викладачів
+     * @param n
+     */
     private void extendTeachersArray(int n){
         Teacher[] extendedArr = new Teacher[n];
         for (int i=0; i<numberOfTeachers; i++) {
@@ -57,7 +87,6 @@ public class Specialty {
         }
         numberOfTeachers = n;
         teachers = extendedArr;
-        //System.out.println(Arrays.toString(students));
     }
     public String getFaculty() {
         return faculty;
@@ -107,6 +136,11 @@ public class Specialty {
         return teachers;
     }
 
+    /**
+     * Метод виведення інформації про студентів та викладачів певної кафедри
+     * В залежності від кількості студентів та викладачів змінюється їхнє закінчення
+     * @return
+     */
     public String toString(){
         String studentsString="";
         for (int i=0; i<numberOfStudents;i++){

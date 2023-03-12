@@ -1,10 +1,10 @@
 package University;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Objects;
-
-
+/**
+ * Клас University.java, який містить в собі всю інформацію про університет НаУКМА, а саме:
+ * кількість факультетів та кафедр, що є у ньому, з відповідною кількістю студентів,
+ * що вчаться в університеті, та викладачів, що в ньому працюють
+ */
 public class University {
     private String universityName = "НаУКМА";
     protected static int numberOfFaculties = 2;
@@ -30,6 +30,9 @@ public class University {
         this.numberOfTeachers = numberOfTeachers;
     }
 
+    /**
+     * Масив студентів кафедри "Інженерія програмного забезпечення"
+     */
     private Student[] ipzStudents = {
             new Student("Трохимчук Артем Андрійович", 1, 1, "ІПЗ"),
             new Student("Красовський Андрій Олександрович", 1, 2, "ІПЗ"),
@@ -51,6 +54,9 @@ public class University {
 
             new Student("Богута Станіслав Сергійович", 4, 1, "ІПЗ"),
     };
+    /**
+     * Масив студентів кафедри "Комп'ютерні науки"
+     */
     private Student[] knStudents = {
             new Student("Романюк Андрій Олександрович", 1, 1, "КН"),
             new Student("Рудник Богдан Дмитрович", 1, 2, "КН"),
@@ -71,9 +77,11 @@ public class University {
             new Student("Кучерук Дарія Вікторівна", 4, 1, "КН"),
             new Student("Пономаренко Катерина Олександрівна", 4, 2, "КН"),
     };
-
+    /**
+     * Масив студентів кафедри "Економіка"
+     */
     private Student[] economyStudents = {
-            new Student("Думич Ірина Володимірівна", 1, 1, "Економіка"),
+            new Student("Думич Ірина Володимирівна", 1, 1, "Економіка"),
             new Student("Грек Тетяна Василівна", 1, 2, "Економіка"),
             new Student("Альошина Милана Ігорівна", 1, 3, "Економіка"),
             new Student("Ковальчук Анна Ігорівна", 1, 1, "Економіка"),
@@ -92,6 +100,9 @@ public class University {
             new Student("Жуков Максим Олексійович", 4, 1, "Економіка"),
             new Student("Божко Катерина Сергіївна", 4, 2, "Економіка"),
     };
+    /**
+     * Масив студентів кафедри "Маркетинг"
+     */
     private Student[] marketingStudents = {
             new Student("Захарченко Марія Юріївна", 1, 1, "Маркетинг"),
             new Student("Лобанова Софія Андріївна", 1, 2, "Маркетинг"),
@@ -108,9 +119,12 @@ public class University {
             new Student("Мазур Світлана Джузеппівна", 3, 3, "Маркетинг"),
 
             new Student("Прозоровська Вікторія Тарасівна", 4, 1, "Маркетинг"),
-            new Student("Кондратьєва Світлана Володимірівна", 4, 2, "Маркетинг"),
+            new Student("Кондратьєва Світлана Володимирівна", 4, 2, "Маркетинг"),
             new Student("Миколенко Ірина Ігорівна", 4, 3, "Маркетинг"),
     };
+    /**
+     * Масив викладачів кафедри "Інженерія програмного забезпечення"
+     */
     private Teacher[] ipzTeachers = {
             new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Кирієнко Оксана Валентинівна", new int[]{1, 2}, new int[]{2}, new String[]{"ІПЗ"},  new String[]{"ФІ"}),
@@ -119,6 +133,9 @@ public class University {
             new Teacher("Проценко Володимир Семенович", new int[]{1, 3, 4}, new int[]{2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
             new Teacher("Митник Юрій Васильович", new int[]{1, 4}, new int[]{2, 3}, new String[]{"ІПЗ"},  new String[]{"ФІ"}),
     };
+    /**
+     * Масив викладачів кафедри "Комп'ютерні науки"
+     */
     private Teacher[] knTeachers = {
             new Teacher("Глибовець Микола Миколайович", new int[]{1, 3, 4}, new int[]{1, 2}, new String[]{"КН"},  new String[]{"ФІ"}),
             new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
@@ -126,28 +143,38 @@ public class University {
             new Teacher("Захарійченко Юрій Олексійович", new int[]{1, 2, 3, 4}, new int[]{1, 2, 3}, new String[]{"КН", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Проценко Володимир Семенович", new int[]{1, 3, 4}, new int[]{2, 3}, new String[]{"ІПЗ", "КН"},  new String[]{"ФІ"}),
     };
+    /**
+     * Масив викладачів кафедри "Економіка"
+     */
     private Teacher[] economyTeachers = {
             new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Калиновська Оксана В'ячеславівна", new int[]{1}, new int[]{2}, new String[]{"Економіка"},  new String[]{"ФЕН"}),
             new Teacher("Гуменна Олександра Віталіївна", new int[]{2, 3, 4}, new int[]{1, 2}, new String[]{"Економіка"},  new String[]{"ФЕН"}),
     };
+    /**
+     * Масив викладачів кафедри "Маркетинг"
+     */
     private Teacher[] marketingTeachers = {
             new Teacher("Пєчкурова Олена Миколаївна", new int[]{1, 2, 4}, new int[]{1, 3}, new String[]{"ІПЗ", "КН", "Економіка", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Захарійченко Юрій Олексійович", new int[]{1, 2}, new int[]{1, 2, 3}, new String[]{"КН", "Маркетинг"},  new String[]{"ФІ","ФЕН"}),
             new Teacher("Берданова Ольга Володимирівна", new int[]{2, 3}, new int[]{2, 3}, new String[]{"Маркетинг"},  new String[]{"ФЕН"}),
             new Teacher("Малиш Наталія Андріївна", new int[]{1, 4}, new int[]{1}, new String[]{"Маркетинг"},  new String[]{"ФЕН"}),
     };
+    /**
+     * Масив кафедр факультету інформатики
+     */
     private Specialty[] FI = {
             new Specialty("ІПЗ", ipzStudents, ipzTeachers, "ФІ"),
             new Specialty("КН", knStudents, knTeachers, "ФІ"),
     };
+    /**
+     * Масив кафедр факультету економічних наук
+     */
     private Specialty[] FEN = {
             new Specialty("Економіка", economyStudents, economyTeachers, "ФЕН"),
             new Specialty("Маркетинг", marketingStudents, marketingTeachers,"ФЕН"),
     };
-    private int generateGroup(){
-        return (int)(Math.random()*3)+1;
-    }
+
     public University(){
         faculties = new Faculty[numberOfFaculties];
         faculties[0] = new Faculty("ФІ", FI[0], FI[1]);
@@ -183,6 +210,10 @@ public class University {
         this.allTeachers = allTeachers;
     }
 
+    /**
+     * Метод розширення масиву факультетів університету
+     * @param n
+     */
     protected static void extendFacultyArray(int n){
         Faculty[] extendedArr = new Faculty[n];
         for (int i=0; i<numberOfFaculties; i++) {
@@ -190,8 +221,12 @@ public class University {
         }
         numberOfFaculties = n;
         faculties = extendedArr;
-        //System.out.println(Arrays.toString(faculties));
     }
+
+    /**
+     * Метод, що виводить інформацію про університет у консоль
+     * @return
+     */
     public String toString(){
         String facultiesString="";
         for (int i=0; i<numberOfFaculties;i++){
@@ -207,18 +242,26 @@ public class University {
     public Faculty[] getFaculties() {
         return faculties;
     }
+
+    /**
+     * Метод, що повертає масив кафедр університету
+     * @return масив кафедр
+     */
     public static Specialty[] getAllSpecialties() {
         Specialty[] arr = new Specialty[getTotalNumberOfSpecialties()];
-        int n=0;
         for (int i=0, k=0; i<numberOfFaculties; i++){
             for (Specialty s:faculties[i].getSpecialties()){
                 arr[k]=s;
                 k++;
             }
         }
-        //System.out.println(Arrays.toString(arr));
         return arr;
     }
+
+    /**
+     * Метод, що повертає загальну кількість кафедр
+     * @return загальна кількість кафедр
+     */
     public static int getTotalNumberOfSpecialties(){
         int n=0;
         for (Faculty f:faculties){
@@ -227,6 +270,9 @@ public class University {
         return n;
     }
 
+    /**
+     * Оновлення інформації про студентів та викладачів університету
+     */
     public static void updateStudentsAndTeachers(){
         numberOfStudents=0;
         numberOfTeachers=0;

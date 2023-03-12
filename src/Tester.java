@@ -2,15 +2,19 @@
 import java.io.IOException;
 
 import University.*;
+
+/**
+ * Клас Tester.java, який наслідує клас Methods.java
+ * У цьому класі можна запустити програму і подивитися на структуру університету
+ */
 public class Tester extends Methods {
     static University ukma;
     static String method;
-    static String choice = "так";
 
     public static void main(String[] args) throws IOException {
         System.out.println("Програма має на меті змоделювати структуру університету. У якості прикладу взято НаУКМА");
         ukma = new University();
-        System.out.println(ukma);
+        //System.out.println(ukma);
         menu();
     }
 
@@ -27,7 +31,8 @@ public class Tester extends Methods {
     }
 
     /**
-     * Метод, у якому реалізовані всі можливості програми
+     * Рекурсивний метод меню, у якому викликаються та виконуються методи від 1-го до 10-го
+     * У разі, якщо користувач захоче перейти до меню, натиснувши 0, цей метод викличе сам себе
      * @throws IOException
      */
     private static void menu() throws IOException {
@@ -43,15 +48,15 @@ public class Tester extends Methods {
                 "9. Вивести всіх студентів кафедри вказаного курсу.\n" +
                 "10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.");
         method = DataInput.getString("\nОберіть номер методу, який бажаєте виконати: ");
-
+        //1. Створити/видалити/редагувати факультет.
         while(method.equals("1")){
             option1();
         }
-
+        //2. Створити/видалити/редагувати кафедру факультету.
         while(method.equals("2")){
             option2();
         }
-
+        //3. Додати/видалити/редагувати студента/викладача до кафедри.
         while(method.equals("3")){
             System.out.println("\nВи знаходитесь у пункті 3. Додати/видалити/редагувати студента/викладача до кафедри. Кого бажаєте додати/видалити/редагувати? ");
             int n = DataInput.getInt("1 - студента, 2 - викладача; повернутись до головного меню - 0 ");
@@ -65,6 +70,7 @@ public class Tester extends Methods {
                     menu();
                 }
             }
+        //4. Знайти студента/викладача за ПІБ, курсом або групою.
         while (method.equals("4")) {
             System.out.println("\nВи знаходитесь у пункті 4. Знайти студента/викладача за ПІБ. Кого бажаєте шукати? ");
             int n = DataInput.getInt("1 - студента, 2 - викладача; повернутись до головного меню - 0 ");
@@ -82,10 +88,12 @@ public class Tester extends Methods {
                 menu();
             }
         }
+        //5. Вивести всіх студентів впорядкованих за курсами.
         while (method.equals("5")) {
             System.out.println("\nВи знаходитесь у пункті 5. Вивести всіх студентів впорядкованих за курсами. ");
             allStudentsSortedByCourse();
         }
+        //6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом.
         while (method.equals("6")) {
             System.out.println("\nВи знаходитесь у пункті 6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом. Кого бажаєте вивести? ");
             int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
@@ -107,6 +115,7 @@ public class Tester extends Methods {
                 menu();
             }
         }
+        //7. Вивести всіх студентів кафедри впорядкованих за курсами.
         while (method.equals("7")) {
             System.out.println("\nВи знаходитесь у пункті 7. Вивести всіх студентів кафедри впорядкованих за курсами. ");
             String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
@@ -117,6 +126,7 @@ public class Tester extends Methods {
             while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
             if (repeat==0) menu();
         }
+        //8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом.
         while (method.equals("8")) {
             System.out.println("\nВи знаходитесь у пункті 8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом. Кого бажаєте вивести? ");
             int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
@@ -137,6 +147,7 @@ public class Tester extends Methods {
                 menu();
             }
         }
+        //9. Вивести всіх студентів кафедри вказаного курсу.
         while (method.equals("9")) {
             System.out.println("\nВи знаходитесь у пункті 9. Вивести всіх студентів кафедри вказаного курсу. ");
             String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якої бажаєте вивести: ");
@@ -155,6 +166,7 @@ public class Tester extends Methods {
             while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
             if (repeat==0) menu();
         }
+        //10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.
         while (method.equals("10")) {
             System.out.println("\nВи знаходитесь у пункті 10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом. ");
             String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
@@ -174,6 +186,11 @@ public class Tester extends Methods {
             if (repeat==0) menu();
         }
     }
+
+    /**
+     * Метод, у якому реалізована можливість створення, видалення та редагування факультету
+     * @throws IOException
+     */
     private static void option1() throws IOException {
         System.out.println("\nВи знаходитесь у пункті 1. Створити/видалити/редагувати факультет.");
         int n = DataInput.getInt("1 - створити факультет; 2 - видалити; 3 - редагувати; повернутись до головного меню - 0\n" +
@@ -205,6 +222,11 @@ public class Tester extends Methods {
             menu();
         }
     }
+
+    /**
+     * Метод, у якому реалізована можливість створення, редагування та видалення кафедри факультету
+     * @throws IOException
+     */
     private static void option2() throws IOException {
         System.out.println("\nВи знаходитесь у пункті 2. Створити/видалити/редагувати кафедру факультету.");
         int n = DataInput.getInt("1 - Створити кафедру; 2 - видалити; 3 - редагувати; повернутись до головного меню - 0\n" +
@@ -237,6 +259,12 @@ public class Tester extends Methods {
             menu();
         }
     }
+
+    /**
+     * Метод для додавання, видалення та редагування студента певної кафедри
+     * У ньому, своєю чергою, викликається метод option3EditStudents, зроблений окремо для редагування ПІБ, курсу, групи студентів
+     * @throws IOException
+     */
     private static void option3Students() throws IOException {
         System.out.println("\nПункт 3.1. Додати/видалити/редагувати студента до кафедри.");
         int n = DataInput.getInt("1 - додати студента до кафедри; 2 - видалити; 3 - редагувати; 0 - повернутись до пункту 3\n" +
@@ -291,8 +319,13 @@ public class Tester extends Methods {
                 option3Students();
             }
         }
-
     }
+
+    /**
+     * Метод, зроблений окремо для редагування ПІБ, курсу, групи студентів
+     * @param studentName ПІБ студента
+     * @throws IOException
+     */
     private static void option3EditStudents(String studentName) throws IOException{
         int n = DataInput.getInt("1 - редагувати ПІБ; 2 - редагувати курс; 3 - редагувати групу; 0 - повернутись до пункту 3.1 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
@@ -327,6 +360,12 @@ public class Tester extends Methods {
             option3Students();
         }
     }
+
+    /**
+     * Метод для додавання, видалення та редагування викладача певної кафедри
+     * У цьому методі міститься також окремий метод для редагування ПІБ, курсів та груп викладача
+     * @throws IOException
+     */
     private static void option3Teachers() throws IOException {
         System.out.println("\nПункт 3.2. Додати/видалити/редагувати викладача до кафедри");
         int n = DataInput.getInt("1 - додати викладача до кафедри; 2 - видалити; 3 - редагувати; 0 - повернутись до пункту 3 \n" +
@@ -384,6 +423,12 @@ public class Tester extends Methods {
             }
         }
     }
+
+    /**
+     * Метод для редагування ПІБ, курсів та груп викладача
+     * @param teacherName ПІБ викладача
+     * @throws IOException
+     */
     private static void option3EditTeachers(String teacherName) throws IOException{
         int n = DataInput.getInt("1 - редагувати ПІБ; 2 - редагувати курси; 3 - редагувати групи; 0 - повернутись до пункту 3.1 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
@@ -418,6 +463,13 @@ public class Tester extends Methods {
             option3Teachers();
         }
     }
+
+    /**
+     * Метод, який записує в масив курсів та груп їх рівно стільки, скільки введе користувач
+     * @param length довжина масиву
+     * @return croppedArr
+     * @throws IOException
+     */
     private static int[] fillArr(int length) throws IOException {
         int[] arr = new int[length];
         int k=0;
@@ -453,29 +505,41 @@ public class Tester extends Methods {
         }
         int[] croppedArr=new int[k];
         System.arraycopy(arr, 0, croppedArr, 0, k);
-
         return croppedArr;
     }
 
-    //4. Знайти студента за ПІБ
+    /**
+     * Метод для знаходження студента за ПІБ
+     * @param name ПІБ студента
+     */
     private static void findStudentByName(String name) {
         System.out.println("Результат пошуку студента за ім'ям "+name+":");
         if (!findStudentsByNameAndShow(name)) System.out.println("Співпадінь не знайдено");
     }
-    //4.Знайти викладача за ПІБ
+
+    /**
+     * Метод для знаходження викладача за ПІБ
+     * @param name ПІБ викладача
+     */
     private static void findTeacherByName(String name) {
         System.out.println("Результат пошуку викладача за ім'ям "+name+":");
         if (!findTeachersByNameAndShow(name)) System.out.println("Співпадінь не знайдено");
     }
 
-    //5. Вивести всіх студентів впорядкованих за курсами.
+    /**
+     * Метод для виведення всіх студентів впорядкованих за курсами.
+     */
     private static void allStudentsSortedByCourse() {
         System.out.println("Ось список всіх студентів, впорядкованих за курсами: ");
         if (ukma.getNumberOfStudents()==0) System.out.println("В університеті немає студентів");
         else sortByCourse(ukma.getAllStudents(), ukma.getNumberOfStudents(), true);
     }
 
-    //6. Вивести всіх студентів факультету впорядкованих за алфавітом.
+    /**
+     * Метод виведення всіх студентів факультету впорядкованих за алфавітом.
+     * @param facultyName назва факультету
+     * @return true, якщо студентів впорядковано та false, якщо факультету не існує
+     */
     private static boolean facultyStudentsSortedByName(String facultyName) {
         Faculty f = findFaculty(facultyName);
         if (f!=null) {
@@ -484,11 +548,16 @@ public class Tester extends Methods {
             else sortByName(f.getStudents(), f.getNumberOfStudents(), true);
             return true;
         } else {
-            //System.out.print("Факультету "+facultyName+" не існує!");
+            System.out.print("Факультету "+facultyName+" не існує!");
             return false;
         }
     }
-    //6. Вивести всіх викладачів факультету впорядкованих за алфавітом.
+
+    /**
+     * Метод виведення всіх викладачів факультету впорядкованих за алфавітом.
+     * @param facultyName назва факультету
+     * @return true, якщо викладачів впорядковано та false, якщо факультету не існує
+     */
     private static boolean facultyTeachersSortedByName(String facultyName) {
         Faculty f = findFaculty(facultyName);
         if (f!=null) {
@@ -497,11 +566,16 @@ public class Tester extends Methods {
             else sortByName(f.getTeachers(), f.getNumberOfTeachers(), true);
             return true;
         } else {
-            //System.out.print("Факультету "+facultyName+" не існує!");
+            System.out.print("Факультету "+facultyName+" не існує!");
             return false;
         }
     }
-    //7. Вивести всіх студентів кафедри впорядкованих за курсами.
+
+    /**
+     * Метод виведення всіх студентів кафедри впорядкованих за курсами.
+     * @param specialtyName назва кафедри
+     * @return true, якщо студентів кафедри впорядковано та false, якщо кафедри не існує
+     */
     private static boolean specialtyStudentsSortedByCourse(String specialtyName) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
@@ -510,12 +584,16 @@ public class Tester extends Methods {
             else sortByCourse(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
-            //System.out.print("Кафедри "+specialtyName+" не існує!");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
 
-    //8. Вивести всіх студентів кафедри впорядкованих за алфавітом.
+    /**
+     * Метод виведення всіх студентів кафедри впорядкованих за алфавітом.
+     * @param specialtyName назва кафедри
+     * @return true, якщо студентів впорядковано та false, якщо кафедри не існує
+     */
     private static boolean specialtyStudentsSortedByName(String specialtyName) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
@@ -524,11 +602,16 @@ public class Tester extends Methods {
             else sortByName(s.getStudents(), s.getNumberOfStudents(), true);
             return true;
         } else {
-            //System.out.print("Кафедри "+specialtyName+" не існує!");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
-    //8. Вивести всіх викладачів кафедри впорядкованих за алфавітом.
+
+    /**
+     * Метод виведення всіх викладачів кафедри впорядкованих за алфавітом.
+     * @param specialtyName назва кафедри
+     * @return true, якщо викладачів впорядковано та false, якщо кафедри не існує
+     */
     private static boolean specialtyTeachersSortedByName(String specialtyName) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
@@ -537,11 +620,17 @@ public class Tester extends Methods {
             else sortByName(s.getTeachers(), s.getNumberOfTeachers(), true);
             return true;
         } else {
-           // System.out.print("Кафедри "+specialtyName+" не існує!");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
-    //9.Вивести всіх студентів кафедри вказаного курсу.
+
+    /**
+     * Метод виведення всіх студентів кафедри вказаного курсу.
+     * @param specialtyName назва кафедри
+     * @param year курс
+     * @return true, якщо студентів виведено та false, якщо кафедри не існує
+     */
     private static boolean StudentsBySpecialtyAndYear(String specialtyName, int year) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
@@ -557,11 +646,17 @@ public class Tester extends Methods {
             System.out.println();
             return true;
         } else {
-            //System.out.print("Кафедри "+specialtyName+" не існує!");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }
-    //10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.
+
+    /**
+     * Метод виведення всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.
+     * @param specialtyName назва кафедри
+     * @param year курс
+     * @return true, якщо студентів виведено та false, якщо кафедри не існує
+     */
     private static boolean StudentsBySpecialtyAndYearSortedByName(String specialtyName, int year) {
         Specialty s = findSpecialty(specialtyName);
         if (s!=null) {
@@ -580,7 +675,7 @@ public class Tester extends Methods {
             else sortByName(students, students.length, true);
             return true;
         } else {
-            //System.out.print("Кафедри "+specialtyName+" не існує!");
+            System.out.print("Кафедри "+specialtyName+" не існує!");
             return false;
         }
     }

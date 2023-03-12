@@ -1,7 +1,9 @@
 package University;
 
-import java.util.Arrays;
-
+/**
+ * Клас Faculty.java, у якому міститься інформація про факультет університету та всі його складові, а саме:
+ * кафедри, студентів, викладачів
+ */
 public class Faculty {
     private String facultyName;
     private int numberOfSpecialties = 2;
@@ -72,6 +74,11 @@ public class Faculty {
         specialties = new Specialty[numberOfSpecialties];
         updateStudentsAndTeachers();
     }
+
+    /**
+     * Конструктор факультету з одним параметром
+     * @param name назва факультету
+     */
     Faculty(String name){
         facultyName = name;
         numberOfSpecialties = 0;
@@ -79,6 +86,12 @@ public class Faculty {
         updateStudentsAndTeachers();
     }
 
+    /**
+     * Конструктор факультету з 3-ма параметрами
+     * @param name назва факультету
+     * @param spec1 перша кафедра
+     * @param spec2 друга кафедра
+     */
     Faculty(String name, Specialty spec1, Specialty spec2){
         facultyName = name;
         specialties = new Specialty[numberOfSpecialties];
@@ -87,6 +100,11 @@ public class Faculty {
         updateStudentsAndTeachers();
 
     }
+
+    /**
+     * Метод для додавання кафедри на факультет
+     * @param name
+     */
     public void addSpecialty(String name){
         //System.out.println(numberOfFaculties);
         extendSpecialtiesArray(numberOfSpecialties+1);
@@ -95,6 +113,10 @@ public class Faculty {
         updateStudentsAndTeachers();
 
     }
+
+    /**
+     * Метод оновлення списку як студентів, так і викладачів
+     */
     protected void updateStudentsAndTeachers(){
         this.numberOfStudents=0;
         this.numberOfTeachers=0;
@@ -105,6 +127,10 @@ public class Faculty {
         updateStudents();
         updateTeachers();
     }
+
+    /**
+     * Метод оновлення списку студентів
+     */
     private void updateStudents(){
         int n=0;
         allStudents = new Student[numberOfStudents];
@@ -116,6 +142,10 @@ public class Faculty {
             n += sp.getNumberOfStudents();
         }
     }
+
+    /**
+     * Метод оновлення списку викладачів
+     */
     private void updateTeachers(){
         int n=0;
         allTeachers = new Teacher[numberOfTeachers];
@@ -127,6 +157,11 @@ public class Faculty {
             n += sp.getNumberOfTeachers();
         }
     }
+
+    /**
+     * Метод розширення масиву спеціальностей
+     * @param n
+     */
     private void extendSpecialtiesArray(int n){
         Specialty[] extendedArr = new Specialty[n];
         for (int i=0; i<numberOfSpecialties; i++) {
@@ -136,6 +171,11 @@ public class Faculty {
         specialties = extendedArr;
         //System.out.println(Arrays.toString(specialties));
     }
+
+    /**
+     * Метод виведення поточної інформації про факультет (які на ньому є кафедри, скільки навчається студентів та працює викладачів)
+     * @return
+     */
     public String toString(){
         String specialtiesString="";
         for (int i=0; i<numberOfSpecialties;i++){
@@ -145,6 +185,6 @@ public class Faculty {
         if (numberOfSpecialties%10>1 && numberOfSpecialties%10<5 && !(numberOfSpecialties>=12 && numberOfSpecialties<=14)) ending="ості";
         else if ((numberOfSpecialties>=5 && numberOfSpecialties%10!=1) || numberOfSpecialties==11) ending="остей";
         if (numberOfSpecialties>0) return "\n"+facultyName+", що має "+numberOfSpecialties+" спеціальн"+ending+": \n"+ specialtiesString;
-        else  return "\n"+facultyName+", на якому поки емає жодної спеціальності\n";
+        else  return "\n"+facultyName+", на якому поки немає жодної спеціальності\n";
     }
 }

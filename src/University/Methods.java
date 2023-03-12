@@ -1,6 +1,10 @@
 package University;
 import java.util.Arrays;
 
+/**
+ * Клас Methods.java, який наслідує клас University.java
+ * У цьому класі міститься більшість методів, потрібних для реалізації програми
+ */
 public class Methods extends University{
     /**
      * Сортування студентів за курсом (як за зростанням, так і за спаданням)
@@ -894,7 +898,7 @@ public class Methods extends University{
 
     /**
      * Приведення першої букви стрічки до великої (якщо вона такою не є)
-     * @param string
+     * @param string string
      * @return res
      */
     public static String normalizeCase(String string) {
@@ -914,7 +918,6 @@ public class Methods extends University{
             }else {
                 res+=string.charAt(i);
             }
-
         }
         return res;
     }

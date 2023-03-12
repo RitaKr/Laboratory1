@@ -1,4 +1,8 @@
 package University;
+
+/**
+ * Базовий клас Human.java, що описує людину
+ */
 public class Human {
     private String name;
 
@@ -7,7 +11,7 @@ public class Human {
     }
 
     /**
-     * Full name getter
+     * Геттер для імені
      * @return name
      */
     public String getName(){
@@ -16,7 +20,7 @@ public class Human {
 
 
     /**
-     * Full name setter
+     * Сеттер для імені
      * @param name full name
      */
     public void setName(String name) {
@@ -25,7 +29,7 @@ public class Human {
 
 
     /**
-     * Converts int array to string
+     * Перетворює масив інтів у стрічку
      * @return string with grades
      */
     public String arrayToString(int[] arr) {
@@ -37,7 +41,7 @@ public class Human {
         return str;
     }
     /**
-     * Converts String array to string
+     * Перетворює масив стрічок у стрічку
      * @return string with grades
      */
     public String arrayToString(String[] arr) {
@@ -49,7 +53,7 @@ public class Human {
         return str;
     }
 
-
+    @Override
     public String toString() {
         return name;
     }
