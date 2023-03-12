@@ -25,9 +25,9 @@ public class Tester extends Methods {
     private static void showUniversity() throws IOException {
         int ask = DataInput.getInt("Бажаєте подивитись поточну структуру університету? (1 - так, 0 - ні) ");
         while(ask!=0&&ask!=1){
-            ask = DataInput.getInt("1 - повторити, 0 - закінчити ");
+            ask = DataInput.getInt("Введіть 1 або 0! ");
         }
-        if (ask==1) System.out.println(ukma);
+        if (ask==1) System.out.println("\n"+ukma);
     }
 
     /**
@@ -46,7 +46,8 @@ public class Tester extends Methods {
                 "7. Вивести всіх студентів кафедри впорядкованих за курсами.\n" +
                 "8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом.\n" +
                 "9. Вивести всіх студентів кафедри вказаного курсу.\n" +
-                "10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.");
+                "10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.\n" +
+                "11. Вивести поточну структуру університету.");
         method = DataInput.getString("\nОберіть номер методу, який бажаєте виконати: ");
         //1. Створити/видалити/редагувати факультет.
         while(method.equals("1")){
@@ -185,6 +186,10 @@ public class Tester extends Methods {
             while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
             if (repeat==0) menu();
         }
+        while(method.equals("11")){
+            System.out.println("\n"+ukma);
+            menu();
+        }
     }
 
     /**
@@ -196,28 +201,39 @@ public class Tester extends Methods {
         int n = DataInput.getInt("1 - створити факультет; 2 - видалити; 3 - редагувати; повернутись до головного меню - 0\n" +
                 "Оберіть номер дії, яку бажаєте виконати:  ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію): ");
-            if (sure == 1) {
-                if (n == 1) {
-                    String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте створити: ");
+
+            if (n == 1) {
+                String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте створити: ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете додати цей факультет? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!addFaculty(facultyName)) {
-                        facultyName = DataInput.getString("Факультет із назвою "+facultyName+" вже існує! Уведіть іншу назву: ");
+                        facultyName = DataInput.getString("Факультет із назвою " + facultyName + " вже існує! Уведіть іншу назву: ");
                     }
-                } else if (n == 2) {
-                    String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте видалити: ");
+                    showUniversity();
+                }
+            } else if (n == 2) {
+                String facultyName = DataInput.getString("Уведіть назву факультету, який бажаєте видалити: ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете видалити цей факультет? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!deleteFaculty(facultyName)) {
-                        facultyName = DataInput.getString("Факультету із назвою "+facultyName+" не існує! Уведіть назву факультету, що вже існує: ");
+                        facultyName = DataInput.getString("Факультету із назвою " + facultyName + " не існує! Уведіть назву факультету, що вже існує: ");
                     }
-                } else if (n == 3) {
-                    String facultyName = DataInput.getString("Уведіть назву факультету, яку бажаєте редагувати: ");
-                    String newName = DataInput.getString("Уведіть нову назву для факультету " + facultyName + ": ");
+                    showUniversity();
+                }
+            } else if (n == 3) {
+                String facultyName = DataInput.getString("Уведіть назву факультету, яку бажаєте редагувати: ");
+                String newName = DataInput.getString("Уведіть нову назву для факультету " + facultyName + ": ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете застосувати ці зміни? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!editFaculty(facultyName, newName)) {
-                        facultyName = DataInput.getString("Факультету із назвою "+facultyName+" не існує! Уведіть назву факультету, що вже існує: ");
+                        facultyName = DataInput.getString("Факультету із назвою " + facultyName + " не існує! Уведіть назву факультету, що вже існує: ");
                         newName = DataInput.getString("Уведіть нову назву для факультету " + facultyName + ": ");
                     }
+                    showUniversity();
                 }
-                showUniversity();
             }
+
+
         } else {
             menu();
         }
@@ -232,29 +248,40 @@ public class Tester extends Methods {
         int n = DataInput.getInt("1 - Створити кафедру; 2 - видалити; 3 - редагувати; повернутись до головного меню - 0\n" +
                 "Оберіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
-            if (sure == 1) {
-                if (n == 1) {
-                    String facultyName = DataInput.getString("Уведіть назву факультету, на якому бажаєте створити кафедру: ");
-                    String specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте створити: ");
+
+            if (n == 1) {
+                String facultyName = DataInput.getString("Уведіть назву факультету, на якому бажаєте створити кафедру: ");
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте створити: ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете додати цю кафедру? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!addSpecialty(specialtyName, facultyName)) {
+                        System.out.println("Факультету " + facultyName + " не існує або кафедра з назвою " + specialtyName + " вже існує! Введіть коректні дані!");
                         facultyName = DataInput.getString("Уведіть назву факультету, на якому бажаєте створити кафедру: ");
                         specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте створити: ");
                     }
-                } else if (n == 2) {
-                    String specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте видалити: ");
-                    while (!deleteSpecialty(specialtyName)) {
-                        specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
-                    }
-                } else if (n == 3) {
-                    String specialtyName = DataInput.getString("Уведіть назву кафедри, назву якої бажаєте редагувати: ");
-                    String newName = DataInput.getString("Уведіть нову назву кафедри: ");
-                    while (!editSpecialty(specialtyName, newName)) {
-                        specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує, щоби змінити її на " + newName + ": ");
-                    }
+                    showUniversity();
                 }
-                showUniversity();
+            } else if (n == 2) {
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, яку бажаєте видалити: ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете видалити цю кафедру? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
+                    while (!deleteSpecialty(specialtyName)) {
+                        specialtyName = DataInput.getString("Кафедри " + specialtyName + " не існує. Уведіть назву кафедри, яка вже існує: ");
+                    }
+                    showUniversity();
+                }
+            } else if (n == 3) {
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, назву якої бажаєте редагувати: ");
+                String newName = DataInput.getString("Уведіть нову назву кафедри: ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете застосувати ці зміни? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
+                    while (!editSpecialty(specialtyName, newName)) {
+                        specialtyName = DataInput.getString("Кафедри " + specialtyName + " не існує. Уведіть назву кафедри, яка вже існує, щоби змінити її на " + newName + ": ");
+                    }
+                    showUniversity();
+                }
             }
+
         } else {
             menu();
         }
@@ -270,54 +297,60 @@ public class Tester extends Methods {
         int n = DataInput.getInt("1 - додати студента до кафедри; 2 - видалити; 3 - редагувати; 0 - повернутись до пункту 3\n" +
                 "Оберіть номер дії, яку бажаєте виконати: ");
         if (n!=0){
-            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію): ");
-            if (sure == 1) {
-                //add student
-                if (n == 1) {
-                    System.out.println("\nПункт 3.1.1. Додавання студента до кафедри");
-                    String specialtyName = DataInput.getString("Уведіть назву спеціальності, на яку бажаєте записати студента: ");
-                    String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте записати на кафедру: ");
-                    int year = DataInput.getInt("На якому курсі навчається студент? Уведіть номер (1-4): ");
-                    while (year < 1 || year > 4) {
-                        year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
-                    }
-                    int group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-3): ");
-                    while (group < 1 || group > 3) {
-                        group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3): ");
-                    }
+            //add student
+            if (n == 1) {
+                System.out.println("\nПункт 3.1.1. Додавання студента до кафедри");
+                String specialtyName = DataInput.getString("Уведіть назву спеціальності, на яку бажаєте записати студента: ");
+                String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте записати на кафедру: ");
+                int year = DataInput.getInt("На якому курсі навчається студент? Уведіть номер (1-4): ");
+                while (year < 1 || year > 4) {
+                    year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
+                }
+                int group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-3): ");
+                while (group < 1 || group > 3) {
+                    group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3): ");
+                }
+                int sure = DataInput.getInt("Ви впевнені, що хочете додати цього студента? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!addStudent(studentName, year, group, specialtyName)) {
+                        System.out.println("Кафедри " + specialtyName + " не існує або студент із іменем " + studentName + " уже існує! Уведіть коректні дані!");
                         specialtyName = DataInput.getString("Уведіть назву спеціальності, на яку бажаєте записати студента: ");
                         studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте записати на кафедру: ");
                         year = DataInput.getInt("На якому курсі навчається студент? Уведіть номер (1-4): ");
                         while (year < 1 || year > 4) {
                             year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                         }
-                        group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-3) ");
+                        group = DataInput.getInt("У якій групі вчитиметься студент? Уведіть номер (1-3): ");
                         while (group < 1 || group > 3) {
-                            group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3)");
+                            group = DataInput.getInt("Неправильне значення! Уведіть значення групи у межах (1-3): ");
                         }
                     }
                     showUniversity();
+                } else {
+                    option3Students();
                 }
-                //delete student
-                else if (n == 2) {
-                    System.out.println("\nПункт 3.1.2. Видалення студента з кафедри");
-                    String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте відрахувати: ");
+            }
+            //delete student
+            else if (n == 2) {
+                System.out.println("\nПункт 3.1.2. Видалення студента з кафедри");
+                String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте відрахувати: ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете відрахувати цього студента? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!deleteStudent(studentName)) {
-                        studentName = DataInput.getString("Студента "+studentName+" не існує! Уведіть ім'я справжнього студента: ");
+                        studentName = DataInput.getString("Студента " + studentName + " не існує! Уведіть ім'я справжнього студента: ");
                     }
                     showUniversity();
+                } else {
+                    option3Students();
                 }
-                //edit student
-                else if (n==3) {
-                    System.out.println("\nПункт 3.1.3. Редагування студента");
-                    String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте редагувати: ");
-                    option3EditStudents(studentName);
-                }
-
-            } else {
-                option3Students();
             }
+            //edit student
+            else if (n==3) {
+                System.out.println("\nПункт 3.1.3. Редагування студента");
+                String studentName = DataInput.getString("Уведіть ПІБ студента, якого бажаєте редагувати: ");
+                option3EditStudents(studentName);
+            }
+
         }
     }
 
@@ -330,35 +363,48 @@ public class Tester extends Methods {
         int n = DataInput.getInt("1 - редагувати ПІБ; 2 - редагувати курс; 3 - редагувати групу; 0 - повернутись до пункту 3.1 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
-            if (sure == 1) {
-                if (n == 1) {
-                    String newName = DataInput.getString("Уведіть новий ПІБ студента "+studentName+": ");
+            if (n == 1) {
+                String newName = DataInput.getString("Уведіть новий ПІБ студента "+studentName+": ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете змінити ім'я цього студента? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!editStudentsName(studentName, newName)) {
-                        studentName = DataInput.getString("Студента з іменем "+studentName+" не існує! Уведіть ПІБ справжнього студента: ");
-                        newName = DataInput.getString("Уведіть новий ПІБ студента "+studentName+": ");
+                        studentName = DataInput.getString("Студента з іменем " + studentName + " не існує! Уведіть ПІБ справжнього студента: ");
+                        newName = DataInput.getString("Уведіть новий ПІБ студента " + studentName + ": ");
                     }
-                } else if (n==2) {
-                    int year = DataInput.getInt("Уведіть новий курс студента "+studentName+": ");
-                    while (!editStudentsYear(studentName, year)) {
-                        studentName = DataInput.getString("Студента з іменем "+studentName+" не існує! Уведіть ПІБ справжнього студента: ");
-                        year = DataInput.getInt("Уведіть новий курс студента "+studentName+": ");
-                    }
-
-                } else if (n==3) {
-                    int group = DataInput.getInt("Уведіть нову групу студента "+studentName+": ");
-                    while (!editStudentsGroup(studentName, group)) {
-                        studentName = DataInput.getString("Студента з іменем "+studentName+" не існує! Уведіть ПІБ справжнього студента: ");
-                        group = DataInput.getInt("Уведіть нову групу студента "+studentName+": ");
-                    }
+                    showUniversity();
+                } else {
+                    option3EditStudents(studentName);
                 }
-                showUniversity();
-            } else {
-                option3EditStudents(studentName);
+            } else if (n==2) {
+                int year = DataInput.getInt("Уведіть новий курс студента "+studentName+": ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете змінити курс цього студента? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
+                    while (!editStudentsYear(studentName, year)) {
+                        studentName = DataInput.getString("Студента з іменем " + studentName + " не існує! Уведіть ПІБ справжнього студента: ");
+                        year = DataInput.getInt("Уведіть новий курс студента " + studentName + ": ");
+                    }
+                    showUniversity();
+                } else {
+                    option3EditStudents(studentName);
+                }
+
+            } else if (n==3) {
+                int group = DataInput.getInt("Уведіть нову групу студента "+studentName+": ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете змінити групу цього студента? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
+                    while (!editStudentsGroup(studentName, group)) {
+                        studentName = DataInput.getString("Студента з іменем " + studentName + " не існує! Уведіть ПІБ справжнього студента: ");
+                        group = DataInput.getInt("Уведіть нову групу студента " + studentName + ": ");
+                    }
+                    showUniversity();
+                } else {
+                    option3EditStudents(studentName);
+                }
             }
         } else {
             option3Students();
         }
+
     }
 
     /**
@@ -371,45 +417,64 @@ public class Tester extends Methods {
         int n = DataInput.getInt("1 - додати викладача до кафедри; 2 - видалити; 3 - редагувати; 0 - повернутись до пункту 3 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
-            if (sure == 1) {
                 //додати викладача
                 if (n == 1) {
                     String specialtyName = DataInput.getString("Уведіть назву кафедри, на яку бажаєте додати викладача: ");
                     String teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте додати на кафедру: ");
                     int[] years = fillArr(4);
                     int[] groups = fillArr(3);
-
-                    while (!addTeacher(teacherName, years, groups, specialtyName)) {
-                        specialtyName = DataInput.getString("Уведіть назву кафедри, на яку бажаєте записати викладача: ");
-                        teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте додати на кафедру: ");
-                        years = fillArr(4);
-                        groups = fillArr(3);
+                    int sure = DataInput.getInt("Ви впевнені, що хочете додати цього викладача? (1 - так; 0 - скасувати поточну дію): ");
+                    if (sure == 1) {
+                        while (!addTeacher(teacherName, years, groups, specialtyName)) {
+                            System.out.println("Кафедри " + specialtyName + " не існує, або викладач з іменем " + teacherName + " вже є на цій кафедрі. " +
+                                    "Введіть коректні дані! ");
+                            specialtyName = DataInput.getString("Уведіть назву кафедри, на яку бажаєте записати викладача: ");
+                            teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте додати на кафедру: ");
+                            years = fillArr(4);
+                            groups = fillArr(3);
+                        }
+                        showUniversity();
+                    } else {
+                        option3Teachers();
                     }
-                    showUniversity();
                 }
                 //видалити викладача
                 else if (n == 2) {
-                    sure = 0;
                     String teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте видалити: ");
-                    while (sure == 0) {
-                        int del = DataInput.getInt("Видалити викладача " + teacherName + " з університету чи тільки з певної кафедри? " +
+                    int sure = DataInput.getInt("Ви впевнені, що хочете видалити цього викладача? (1 - так; 0 - скасувати поточну дію): ");
+                    if (sure == 1) {
+                        sure = 0;
+                        while (sure == 0) {
+                            int del = DataInput.getInt("Видалити викладача " + teacherName + " з університету чи тільки з певної кафедри? " +
                                 "(1 - з кафедри; 2 - з університету) ");
-                        sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
-                        if (sure == 1) {
                             if (del == 1) {
                                 String specialtyName = DataInput.getString("Уведіть назву кафедри, з якої бажаєте видалити викладача: ");
-                                while (!deleteTeacherFromSpecialty(teacherName, specialtyName)) {
-                                    teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте видалити: ");
-                                    specialtyName = DataInput.getString("Уведіть назву кафедри, з якої бажаєте видалити викладача " + teacherName + ": ");
+                                sure = DataInput.getInt("Ви впевнені, що хочете видалити викладача з кафедри "+specialtyName+"? (1 - так; 0 - скасувати поточну дію; 2 - скасувати видалення): ");
+                                if (sure == 1) {
+                                    while (!deleteTeacherFromSpecialty(teacherName, specialtyName)) {
+                                        System.out.println("Викладача з іменем " + teacherName + " не існує, або він не викладає на кафедрі " + specialtyName + " (або цієї кафедри взагалі не існує). " +
+                                                "Введіть коректні дані! ");
+                                        teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте видалити: ");
+                                        specialtyName = DataInput.getString("Уведіть назву кафедри, з якої бажаєте видалити викладача " + teacherName + ": ");
+                                    }
+                                    showUniversity();
+                                } else if (sure==2){
+                                    option3Teachers();
                                 }
                             } else if (del == 2) {
-                                while (!deleteTeacherCompletely(teacherName)) {
-                                    teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
+                                sure = DataInput.getInt("Ви впевнені, що хочете видалити викладача з університету? (1 - так; 0 - скасувати поточну дію; 2 - скасувати видалення): ");
+                                if (sure == 1) {
+                                    while (!deleteTeacherCompletely(teacherName)) {
+                                        teacherName = DataInput.getString("Викладача " + teacherName + " не існує! Уведіть коректне ім'я: ");
+                                    }
+                                    showUniversity();
+                                } else if (sure==2) {
+                                    option3Teachers();
                                 }
                             }
-                            showUniversity();
                         }
+                    } else {
+                        option3Teachers();
                     }
                 }
                 //редагувати викладача
@@ -418,9 +483,7 @@ public class Tester extends Methods {
                     String teacherName = DataInput.getString("Уведіть ПІБ викладача, якого бажаєте редагувати: ");
                     option3EditTeachers(teacherName);
                 }
-            } else {
-                option3Teachers();
-            }
+
         }
     }
 
@@ -430,35 +493,48 @@ public class Tester extends Methods {
      * @throws IOException
      */
     private static void option3EditTeachers(String teacherName) throws IOException{
-        int n = DataInput.getInt("1 - редагувати ПІБ; 2 - редагувати курси; 3 - редагувати групи; 0 - повернутись до пункту 3.1 \n" +
+        int n = DataInput.getInt("1 - редагувати ПІБ; 2 - редагувати курси; 3 - редагувати групи; 0 - повернутись до пункту 3.2 \n" +
                 "Уведіть номер дії, яку бажаєте виконати: ");
         if (n!=0) {
-            int sure = DataInput.getInt("Ви впевнені? (1 - так; 0 - скасувати поточну дію) ");
-            if (sure == 1) {
-                if (n == 1) {
-                    String newName = DataInput.getString("Уведіть новий ПІБ викладача "+teacherName+": ");
+            if (n == 1) {
+                String newName = DataInput.getString("Уведіть новий ПІБ викладача "+teacherName+": ");
+                int sure = DataInput.getInt("Ви впевнені, що хочете змінити ім'я цього викладача? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!editTeachersName(teacherName, newName)) {
-                        teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
-                        newName = DataInput.getString("Уведіть новий ПІБ викладача "+teacherName+": ");
+                        teacherName = DataInput.getString("Викладача " + teacherName + " не існує! Уведіть коректне ім'я: ");
+                        newName = DataInput.getString("Уведіть новий ПІБ викладача " + teacherName + ": ");
                     }
-                } else if (n==2) {
-                    int[] years = fillArr(4);
+                    showUniversity();
+                } else {
+                    option3EditTeachers(teacherName);
+                }
+            } else if (n==2) {
+                int[] years = fillArr(4);
+                int sure = DataInput.getInt("Ви впевнені, що хочете змінити курси цього викладача? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!editTeachersCourses(teacherName, years)) {
-                        teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
+                        teacherName = DataInput.getString("Викладача " + teacherName + " не існує! Уведіть коректне ім'я: ");
                         years = fillArr(4);
                     }
+                    showUniversity();
+                } else {
+                    option3EditTeachers(teacherName);
+                }
 
-                } else if (n==3) {
-                    int[] groups = fillArr(3);
+            } else if (n==3) {
+                int[] groups = fillArr(3);
+                int sure = DataInput.getInt("Ви впевнені, що хочете змінити групи цього викладача? (1 - так; 0 - скасувати поточну дію): ");
+                if (sure == 1) {
                     while (!editTeachersGroups(teacherName, groups)) {
-                        teacherName = DataInput.getString("Викладача "+teacherName+" не існує! Уведіть коректне ім'я: ");
+                        teacherName = DataInput.getString("Викладача " + teacherName + " не існує! Уведіть коректне ім'я: ");
                         groups = fillArr(3);
                     }
+                    showUniversity();
+                } else {
+                    option3EditTeachers(teacherName);
                 }
-                showUniversity();
-            } else {
-                option3EditTeachers(teacherName);
             }
+
         } else {
             option3Teachers();
         }
