@@ -9,6 +9,7 @@ public class Teacher extends Human {
     private int[] years;
     private String[] specialties;
     private String[] faculties;
+
     public Teacher(String name, int[] years, int[] groups){
         super(name);
         this.years = years;
@@ -32,35 +33,6 @@ public class Teacher extends Human {
     }
 
     /**
-     * Геттер курсів викладача
-     * @return курси
-     */
-    public int[] getYears() {
-        return years;
-    }
-    /**
-     * Геттер груп викладача
-     * @return групи
-     */
-    public int[] getGroups() {
-        return groups;
-    }
-
-    /**
-     * Сеттер курсів викладача
-     * @return масив курсів викладача
-     */
-    public void setYears(int[] years) {
-        this.years = years;
-    }
-    /**
-     * Groups setter
-     * @return масив груп викладача
-     */
-    public void setGroups(int[] groups) {
-        this.groups = groups;
-    }
-    /**
      * Метод додавання курсів до масиву курсів викладача
      * @return масив курсів викладача
      */
@@ -68,6 +40,7 @@ public class Teacher extends Human {
         years = extendIntArray(years, years.length+1);
         years[years.length-1] = year;
     }
+
     /**
      * Метод додавання груп до масиву груп викладача
      * @return масив груп викладача
@@ -77,21 +50,6 @@ public class Teacher extends Human {
         groups[groups.length-1] = group;
     }
 
-    public String[] getSpecialties() {
-        return specialties;
-    }
-
-    public void setSpecialties(String[] specialties) {
-        this.specialties = specialties;
-    }
-
-    public void setFaculties(String[] faculties) {
-        this.faculties = faculties;
-    }
-
-    public String[] getFaculties() {
-        return faculties;
-    }
     /**
      * Метод додавання кафедр до масиву кафедр
      * @return масив кафедр, на яких працює викладач
@@ -145,5 +103,49 @@ public class Teacher extends Human {
     public String toString() {
         return super.toString()+" (курси: "+arrayToString(years)+", групи: "+arrayToString(groups) +
                 ", факультети: "+arrayToString(faculties)+", спеціальності: "+arrayToString(specialties)+")";
+    }
+    /**
+     * Геттер курсів викладача
+     * @return курси
+     */
+    public int[] getYears() {
+        return years;
+    }
+    /**
+     * Геттер груп викладача
+     * @return групи
+     */
+    public int[] getGroups() {
+        return groups;
+    }
+
+    /**
+     * Сеттер курсів викладача
+     * @return масив курсів викладача
+     */
+    public void setYears(int[] years) {
+        this.years = years;
+    }
+    /**
+     * Groups setter
+     * @return масив груп викладача
+     */
+    public void setGroups(int[] groups) {
+        this.groups = groups;
+    }
+    public String[] getSpecialties() {
+        return specialties;
+    }
+
+    public void setSpecialties(String[] specialties) {
+        this.specialties = specialties;
+    }
+
+    public void setFaculties(String[] faculties) {
+        this.faculties = faculties;
+    }
+
+    public String[] getFaculties() {
+        return faculties;
     }
 }
