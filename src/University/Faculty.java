@@ -98,12 +98,11 @@ public class Faculty {
         specialties[0] = spec1;
         specialties[1] = spec2;
         updateStudentsAndTeachers();
-
     }
 
     /**
      * Метод для додавання кафедри на факультет
-     * @param name
+     * @param name назва кафедри
      */
     public void addSpecialty(String name){
         //System.out.println(numberOfFaculties);
@@ -111,7 +110,6 @@ public class Faculty {
         //System.out.println(numberOfFaculties);
         specialties[numberOfSpecialties-1]=new Specialty(name, facultyName);
         updateStudentsAndTeachers();
-
     }
 
     /**
@@ -174,7 +172,7 @@ public class Faculty {
 
     /**
      * Метод виведення поточної інформації про факультет (які на ньому є кафедри, скільки навчається студентів та працює викладачів)
-     * @return
+     * @return інформація про факультет
      */
     public String toString(){
         String specialtiesString="";

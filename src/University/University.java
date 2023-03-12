@@ -14,22 +14,6 @@ public class University {
     protected static int numberOfStudents = 0;
     protected static int numberOfTeachers = 0;
 
-    public int getNumberOfStudents() {
-        return numberOfStudents;
-    }
-
-    public void setNumberOfStudents(int numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
-    }
-
-    public int getNumberOfTeachers() {
-        return numberOfTeachers;
-    }
-
-    public void setNumberOfTeachers(int numberOfTeachers) {
-        this.numberOfTeachers = numberOfTeachers;
-    }
-
     /**
      * Масив студентів кафедри "Інженерія програмного забезпечення"
      */
@@ -182,34 +166,6 @@ public class University {
         updateStudentsAndTeachers();
     }
 
-    public int getNumberOfFaculties() {
-        return numberOfFaculties;
-    }
-
-    public void setNumberOfFaculties(int numberOfFaculties) {
-        this.numberOfFaculties = numberOfFaculties;
-    }
-
-    public void setFaculties(Faculty[] faculties) {
-        this.faculties = faculties;
-    }
-
-    public Student[] getAllStudents() {
-        return allStudents;
-    }
-
-    public void setAllStudents(Student[] allStudents) {
-        this.allStudents = allStudents;
-    }
-
-    public Teacher[] getAllTeachers() {
-        return allTeachers;
-    }
-
-    public void setAllTeachers(Teacher[] allTeachers) {
-        this.allTeachers = allTeachers;
-    }
-
     /**
      * Метод розширення масиву факультетів університету
      * @param n
@@ -237,10 +193,6 @@ public class University {
         else if ((numberOfFaculties>=5 && numberOfFaculties%10!=1) || numberOfFaculties==11) ending="ів";
         return "Університет "+universityName+" має "+
                 numberOfFaculties+" факультет"+ending+". Серед них: "+facultiesString;
-    }
-
-    public Faculty[] getFaculties() {
-        return faculties;
     }
 
     /**
@@ -309,5 +261,49 @@ public class University {
         }
 
     }
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
 
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
+    }
+
+    public int getNumberOfTeachers() {
+        return numberOfTeachers;
+    }
+
+    public void setNumberOfTeachers(int numberOfTeachers) {
+        this.numberOfTeachers = numberOfTeachers;
+    }
+    public int getNumberOfFaculties() {
+        return numberOfFaculties;
+    }
+
+    public void setNumberOfFaculties(int numberOfFaculties) {
+        this.numberOfFaculties = numberOfFaculties;
+    }
+
+    public void setFaculties(Faculty[] faculties) {
+        this.faculties = faculties;
+    }
+    public Faculty[] getFaculties() {
+        return faculties;
+    }
+
+    public Student[] getAllStudents() {
+        return allStudents;
+    }
+
+    public void setAllStudents(Student[] allStudents) {
+        this.allStudents = allStudents;
+    }
+
+    public Teacher[] getAllTeachers() {
+        return allTeachers;
+    }
+
+    public void setAllTeachers(Teacher[] allTeachers) {
+        this.allTeachers = allTeachers;
+    }
 }

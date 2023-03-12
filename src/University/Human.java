@@ -53,6 +53,10 @@ public class Human {
         return str;
     }
 
+    /**
+     * Метод, що повертає ім'я людини
+     * @return name
+     */
     @Override
     public String toString() {
         return name;
