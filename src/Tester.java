@@ -36,6 +36,7 @@ public class Tester extends Methods {
     private static void menu() throws IOException {
         System.out.println("""
                 ---------------- Меню ----------------
+                0. Закінчити програму.
                 1. Створити/видалити/редагувати факультет.
                 2. Створити/видалити/редагувати кафедру факультету.
                 3. Додати/видалити/редагувати студента/викладача до кафедри.
@@ -48,18 +49,19 @@ public class Tester extends Methods {
                 10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.
                 11. Вивести поточну структуру університету.""");
         method = DataInput.getString("\nОберіть номер методу, який бажаєте виконати: ");
-        //1. Створити/видалити/редагувати факультет.
-        while(method.equals("1")){
-            option1();
-        }
-        //2. Створити/видалити/редагувати кафедру факультету.
-        while(method.equals("2")){
-            option2();
-        }
-        //3. Додати/видалити/редагувати студента/викладача до кафедри.
-        while(method.equals("3")){
-            System.out.println("\nВи знаходитесь у пункті 3. Додати/видалити/редагувати студента/викладача до кафедри. Кого бажаєте додати/видалити/редагувати? ");
-            int n = DataInput.getInt("1 - студента, 2 - викладача; повернутись до головного меню - 0 ");
+        if (!method.equals("0")) {
+            //1. Створити/видалити/редагувати факультет.
+            while (method.equals("1")) {
+                option1();
+            }
+            //2. Створити/видалити/редагувати кафедру факультету.
+            while (method.equals("2")) {
+                option2();
+            }
+            //3. Додати/видалити/редагувати студента/викладача до кафедри.
+            while (method.equals("3")) {
+                System.out.println("\nВи знаходитесь у пункті 3. Додати/видалити/редагувати студента/викладача до кафедри. Кого бажаєте додати/видалити/редагувати? ");
+                int n = DataInput.getInt("1 - студента, 2 - викладача; повернутись до головного меню - 0 ");
                 if (n == 1) {
                     option3Students();
                     //showUniversity();
@@ -70,124 +72,132 @@ public class Tester extends Methods {
                     menu();
                 }
             }
-        //4. Знайти студента/викладача за ПІБ, курсом або групою.
-        while (method.equals("4")) {
-            System.out.println("\nВи знаходитесь у пункті 4. Знайти студента/викладача за ПІБ. Кого бажаєте шукати? ");
-            int n = DataInput.getInt("1 - студента, 2 - викладача; повернутись до головного меню - 0 ");
-            if (n == 1) {
-                System.out.println("\nВи знаходитесь у пункті 4.1 Знайти студента за ПІБ ");
-                String name = DataInput.getString("Уведіть ПІБ студента, якого шукаєте: ");
-                findStudentByName(name);
+            //4. Знайти студента/викладача за ПІБ, курсом або групою.
+            while (method.equals("4")) {
+                System.out.println("\nВи знаходитесь у пункті 4. Знайти студента/викладача за ПІБ. Кого бажаєте шукати? ");
+                int n = DataInput.getInt("1 - студента, 2 - викладача; повернутись до головного меню - 0 ");
+                if (n == 1) {
+                    System.out.println("\nВи знаходитесь у пункті 4.1 Знайти студента за ПІБ ");
+                    String name = DataInput.getString("Уведіть ПІБ студента, якого шукаєте: ");
+                    findStudentByName(name);
 
-            } else if (n == 2) {
-                System.out.println("\nВи знаходитесь у пункті 4.1 Знайти студента за ПІБ ");
-                String name = DataInput.getString("Уведіть ПІБ викладача, якого шукаєте: ");
-                findTeacherByName(name);
+                } else if (n == 2) {
+                    System.out.println("\nВи знаходитесь у пункті 4.1 Знайти студента за ПІБ ");
+                    String name = DataInput.getString("Уведіть ПІБ викладача, якого шукаєте: ");
+                    findTeacherByName(name);
 
-            } else if (n == 0) {
+                } else if (n == 0) {
+                    menu();
+                }
+            }
+            //5. Вивести всіх студентів впорядкованих за курсами.
+            while (method.equals("5")) {
+                System.out.println("\nВи знаходитесь у пункті 5. Вивести всіх студентів впорядкованих за курсами. ");
+                allStudentsSortedByCourse();
                 menu();
-            }
-        }
-        //5. Вивести всіх студентів впорядкованих за курсами.
-        while (method.equals("5")) {
-            System.out.println("\nВи знаходитесь у пункті 5. Вивести всіх студентів впорядкованих за курсами. ");
-            allStudentsSortedByCourse();
-        }
-        //6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом.
-        while (method.equals("6")) {
-            System.out.println("\nВи знаходитесь у пункті 6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом. Кого бажаєте вивести? ");
-            int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
-            if (n == 1) {
-                System.out.println("\nВи знаходитесь у пункті 6.1. Вивести всіх студентів факультету впорядкованих за алфавітом. ");
-                String facultyName = DataInput.getString("Уведіть назву факультету, студентів якого бажаєте сортувати: ");
-                while (!facultyStudentsSortedByName(facultyName)){
-                    facultyName = DataInput.getString("Факультету "+facultyName+" не існує! Уведіть назву факультету, який вже існує: ");
-                }
 
-            } else if (n == 2) {
-                System.out.println("\nВи знаходитесь у пункті 6.2. Вивести всіх викладачів факультету впорядкованих за алфавітом. ");
-                String facultyName = DataInput.getString("Уведіть назву факультету, викладачів якого бажаєте сортувати: ");
-                while (!facultyTeachersSortedByName(facultyName)) {
-                    facultyName = DataInput.getString("Факультету "+facultyName+" не існує! Уведіть назву факультету, який вже існує: ");
-                }
+            }
+            //6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом.
+            while (method.equals("6")) {
+                System.out.println("\nВи знаходитесь у пункті 6. Вивести всіх студентів/викладачів факультету впорядкованих за алфавітом. Кого бажаєте вивести? ");
+                int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
+                if (n == 1) {
+                    System.out.println("\nВи знаходитесь у пункті 6.1. Вивести всіх студентів факультету впорядкованих за алфавітом. ");
+                    String facultyName = DataInput.getString("Уведіть назву факультету, студентів якого бажаєте сортувати: ");
+                    while (!facultyStudentsSortedByName(facultyName)) {
+                        facultyName = DataInput.getString("Факультету " + facultyName + " не існує! Уведіть назву факультету, який вже існує: ");
+                    }
 
-            } else if (n == 0) {
-                menu();
-            }
-        }
-        //7. Вивести всіх студентів кафедри впорядкованих за курсами.
-        while (method.equals("7")) {
-            System.out.println("\nВи знаходитесь у пункті 7. Вивести всіх студентів кафедри впорядкованих за курсами. ");
-            String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
-            while (!specialtyStudentsSortedByCourse(specialtyName)){
-                specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
-            }
-            int repeat = DataInput.getInt("Повторити пункт 7? (1 - так; 0 - повернутись до головного меню): ");
-            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
-            if (repeat==0) menu();
-        }
-        //8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом.
-        while (method.equals("8")) {
-            System.out.println("\nВи знаходитесь у пункті 8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом. Кого бажаєте вивести? ");
-            int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
-            if (n == 1) {
-                System.out.println("\nВи знаходитесь у пункті 8.1 Вивести всіх студентів кафедри впорядкованих за алфавітом. ");
-                String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якої бажаєте сортувати: ");
-                while (!specialtyStudentsSortedByName(specialtyName)){
-                    specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
-                }
+                } else if (n == 2) {
+                    System.out.println("\nВи знаходитесь у пункті 6.2. Вивести всіх викладачів факультету впорядкованих за алфавітом. ");
+                    String facultyName = DataInput.getString("Уведіть назву факультету, викладачів якого бажаєте сортувати: ");
+                    while (!facultyTeachersSortedByName(facultyName)) {
+                        facultyName = DataInput.getString("Факультету " + facultyName + " не існує! Уведіть назву факультету, який вже існує: ");
+                    }
 
-            } else if (n == 2) {
-                System.out.println("\nВи знаходитесь у пункті 8.2 Вивести всіх викладачів кафедри впорядкованих за алфавітом. ");
-                String specialtyName = DataInput.getString("Уведіть назву кафедри, викладачів якої бажаєте сортувати: ");
-                while (!specialtyTeachersSortedByName(specialtyName)) {
-                    specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
+                } else if (n == 0) {
+                    menu();
                 }
-            } else if (n == 0) {
-                menu();
             }
-        }
-        //9. Вивести всіх студентів кафедри вказаного курсу.
-        while (method.equals("9")) {
-            System.out.println("\nВи знаходитесь у пункті 9. Вивести всіх студентів кафедри вказаного курсу. ");
-            String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якої бажаєте вивести: ");
-            int year = DataInput.getInt("Уведіть курс: ");
-            while (year < 1 || year > 4) {
-                year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
+            //7. Вивести всіх студентів кафедри впорядкованих за курсами.
+            while (method.equals("7")) {
+                System.out.println("\nВи знаходитесь у пункті 7. Вивести всіх студентів кафедри впорядкованих за курсами. ");
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
+                while (!specialtyStudentsSortedByCourse(specialtyName)) {
+                    specialtyName = DataInput.getString("Кафедри " + specialtyName + " не існує. Уведіть назву кафедри, яка вже існує: ");
+                }
+                int repeat = DataInput.getInt("Повторити пункт 7? (1 - так; 0 - повернутись до головного меню): ");
+                while (repeat != 0 && repeat != 1)
+                    repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
+                if (repeat == 0) menu();
             }
-            while (!StudentsBySpecialtyAndYear(specialtyName, year)){
-                specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
-                year = DataInput.getInt("Уведіть курс: ");
+            //8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом.
+            while (method.equals("8")) {
+                System.out.println("\nВи знаходитесь у пункті 8. Вивести всіх студентів/викладачів кафедри впорядкованих за алфавітом. Кого бажаєте вивести? ");
+                int n = DataInput.getInt("1 - студентів, 2 - викладачів; повернутись до головного меню - 0 ");
+                if (n == 1) {
+                    System.out.println("\nВи знаходитесь у пункті 8.1 Вивести всіх студентів кафедри впорядкованих за алфавітом. ");
+                    String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якої бажаєте сортувати: ");
+                    while (!specialtyStudentsSortedByName(specialtyName)) {
+                        specialtyName = DataInput.getString("Кафедри " + specialtyName + " не існує. Уведіть назву кафедри, яка вже існує: ");
+                    }
+
+                } else if (n == 2) {
+                    System.out.println("\nВи знаходитесь у пункті 8.2 Вивести всіх викладачів кафедри впорядкованих за алфавітом. ");
+                    String specialtyName = DataInput.getString("Уведіть назву кафедри, викладачів якої бажаєте сортувати: ");
+                    while (!specialtyTeachersSortedByName(specialtyName)) {
+                        specialtyName = DataInput.getString("Кафедри " + specialtyName + " не існує. Уведіть назву кафедри, яка вже існує: ");
+                    }
+                } else if (n == 0) {
+                    menu();
+                }
+            }
+            //9. Вивести всіх студентів кафедри вказаного курсу.
+            while (method.equals("9")) {
+                System.out.println("\nВи знаходитесь у пункті 9. Вивести всіх студентів кафедри вказаного курсу. ");
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якої бажаєте вивести: ");
+                int year = DataInput.getInt("Уведіть курс: ");
                 while (year < 1 || year > 4) {
                     year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                 }
+                while (!StudentsBySpecialtyAndYear(specialtyName, year)) {
+                    specialtyName = DataInput.getString("Кафедри " + specialtyName + " не існує. Уведіть назву кафедри, яка вже існує: ");
+                    year = DataInput.getInt("Уведіть курс: ");
+                    while (year < 1 || year > 4) {
+                        year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
+                    }
+                }
+                int repeat = DataInput.getInt("Повторити пункт 9? (1 - так; 0 - повернутись до головного меню) ");
+                while (repeat != 0 && repeat != 1)
+                    repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
+                if (repeat == 0) menu();
             }
-            int repeat = DataInput.getInt("Повторити пункт 9? (1 - так; 0 - повернутись до головного меню) ");
-            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
-            if (repeat==0) menu();
-        }
-        //10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.
-        while (method.equals("10")) {
-            System.out.println("\nВи знаходитесь у пункті 10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом. ");
-            String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
-            int year = DataInput.getInt("Уведіть курс: ");
-            while (year < 1 || year > 4) {
-                year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
-            }
-            while (!StudentsBySpecialtyAndYearSortedByName(specialtyName, year)){
-                specialtyName = DataInput.getString("Кафедри "+specialtyName+" не існує. Уведіть назву кафедри, яка вже існує: ");
-                year = DataInput.getInt("Уведіть курс: ");
+            //10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом.
+            while (method.equals("10")) {
+                System.out.println("\nВи знаходитесь у пункті 10. Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом. ");
+                String specialtyName = DataInput.getString("Уведіть назву кафедри, студентів якого бажаєте сортувати: ");
+                int year = DataInput.getInt("Уведіть курс: ");
                 while (year < 1 || year > 4) {
                     year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
                 }
+                while (!StudentsBySpecialtyAndYearSortedByName(specialtyName, year)) {
+                    specialtyName = DataInput.getString("Кафедри " + specialtyName + " не існує. Уведіть назву кафедри, яка вже існує: ");
+                    year = DataInput.getInt("Уведіть курс: ");
+                    while (year < 1 || year > 4) {
+                        year = DataInput.getInt("Неправильне значення! Уведіть значення курсу у межах (1-4): ");
+                    }
+                }
+                int repeat = DataInput.getInt("Повторити пункт 10? (1 - так; 0 - повернутись до головного меню) ");
+                while (repeat != 0 && repeat != 1)
+                    repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
+                if (repeat == 0) menu();
             }
-            int repeat = DataInput.getInt("Повторити пункт 10? (1 - так; 0 - повернутись до головного меню) ");
-            while (repeat!=0 && repeat!=1) repeat = DataInput.getInt("Уведіть 1, щоби повторити та 0, щоби перейти до головного меню: ");
-            if (repeat==0) menu();
-        }
-        while(method.equals("11")){
-            System.out.println("\n"+ukma);
-            menu();
+            while (method.equals("11")) {
+                System.out.println("\n" + ukma);
+                menu();
+            }
+        } else {
+            System.out.println("Програму завершено...");
         }
     }
 
